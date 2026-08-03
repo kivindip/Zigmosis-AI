@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,6 +12,7 @@
 
 </head>
 
+
 <body>
 
 
@@ -20,18 +22,25 @@
 🐾 Zigmosis AI
 </div>
 
+
 <div class="menu">
 
 <a href="index.html">Home</a>
+
 <a href="about.html">About Us</a>
+
 <a href="register.html">Register Pet</a>
+
 <a href="pets.html">My Pets</a>
+
 <a href="assistant.html" class="active">AI Assistant</a>
+
 <a href="vision.html">Vision Check</a>
 
 </div>
 
 </nav>
+
 
 
 
@@ -42,16 +51,16 @@
 🐾 PawPal AI
 </h1>
 
+
 <p>
 Your intelligent pet healthcare companion
 </p>
 
-<script>
-const petData = JSON.parse(localStorage.getItem("zigmosisPet"));
 
-console.log(petData);
-</script>
-<div class="chat-box" id="chatBox">
+
+
+<div class="chat-box" id="answer">
+
 
 <div class="bot-message">
 
@@ -65,23 +74,35 @@ I can help with pet health, nutrition, vaccination and care.
 
 
 
+
+
 <div class="chat-input">
 
-<input 
-id="userInput"
+
+<input
+
+id="question"
+
 placeholder="Ask PawPal about your pet..."
+
 >
 
 
-<button onclick="sendMessage()">
+
+<button onclick="askAI()">
+
 Send
+
 </button>
 
 
+
 </div>
 
 
+
 </div>
+
 
 
 
@@ -89,4 +110,5 @@ Send
 
 
 </body>
+
 </html>

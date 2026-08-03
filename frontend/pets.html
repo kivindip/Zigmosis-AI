@@ -253,48 +253,42 @@ Scan to view pet information
 
 <script>
 
-
 const pet = JSON.parse(
-localStorage.getItem("zigmosisPet")
+    localStorage.getItem("lastPet")
 );
-
 
 
 if(pet){
 
 
-document.getElementById("name").innerText=pet.name;
+    document.getElementById("name").innerText = pet.name;
 
 
-document.getElementById("type").innerText=
-pet.species+" • "+pet.breed;
+    document.getElementById("type").innerText =
+    pet.species + " • " + pet.breed;
 
 
-document.getElementById("owner").innerText=
-pet.ownerName;
+    document.getElementById("owner").innerText =
+    pet.owner_name;
 
 
-document.getElementById("contact").innerText=
-pet.ownerContact;
+    document.getElementById("contact").innerText =
+    pet.owner_contact;
 
 
-document.getElementById("age").innerText=
-pet.age;
+    document.getElementById("age").innerText =
+    pet.age;
 
 
-document.getElementById("medical").innerText=
-pet.medicalNotes;
-
-
-
-}
+    document.getElementById("medical").innerText =
+    pet.medical_notes;
 
 
 
-new QRCode(document.getElementById("qrcode"),{
+    new QRCode(document.getElementById("qrcode"),{
 
 
-text:
+        text:
 
 `Zigmosis Pet Identity
 
@@ -306,21 +300,36 @@ Breed: ${pet.breed}
 
 Age: ${pet.age}
 
-Owner: ${pet.ownerName}
+Owner: ${pet.owner_name}
 
-Contact: ${pet.ownerContact}`,
-
-width:160,
-
-height:160
+Contact: ${pet.owner_contact}`,
 
 
-});
+        width:160,
 
+        height:160
+
+
+    });
+
+
+}
+
+else{
+
+
+    document.getElementById("name").innerText =
+    "No Pet Registered";
+
+
+    document.getElementById("type").innerText =
+    "Please register a pet first";
+
+
+}
 
 
 </script>
-
 
 
 </body>

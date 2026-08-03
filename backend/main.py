@@ -107,8 +107,7 @@ def ai_chat(data: ChatRequest):
     try:
 
         answer = generate_answer(
-    data.question,
-    data.pet
+    data.question
 )
 
 
