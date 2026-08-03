@@ -1,0 +1,958 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+
+:root{
+
+    --primary:#c084fc;
+    --secondary:#f9a8d4;
+    --dark-purple:#121112;
+
+    --pink-bg:#fff1f7;
+    --purple-bg:#f5f3ff;
+
+    --text:#475569;
+
+    --white:#ffffff;
+
+}
+
+
+
+body{
+
+    background:#fff9fc;
+
+    color:var(--text);
+
+}
+
+
+
+/* =====================
+NAVBAR
+===================== */
+
+
+nav{
+
+    height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 8%;
+
+    background:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    box-shadow:
+    0 5px 20px rgba(192,132,252,0.12);
+
+}
+
+
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--dark-purple);
+
+}
+
+
+
+.menu{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+
+
+.menu a{
+
+    text-decoration:none;
+
+    color:#64748b;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+.menu a:hover{
+
+    color:#c084fc;
+
+}
+
+
+
+
+
+/* =====================
+HOME HERO
+===================== */
+
+
+.hero{
+
+    min-height:80vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:70px 8%;
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #fff1f7,
+
+    #f5f3ff
+
+    );
+
+}
+
+
+
+.hero-text{
+
+    max-width:560px;
+
+}
+
+
+
+.hero-text h1{
+
+    font-size:58px;
+
+    line-height:1.1;
+
+    color:#0b0b0b;
+
+}
+
+
+
+.hero-text p{
+
+    margin:25px 0;
+
+    font-size:19px;
+
+    color:#64748b;
+
+}
+
+
+
+.hero button{
+
+    margin-top:10px;
+
+}
+
+
+
+
+.pet-image img{
+
+    width:420px;
+
+    height:420px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:10px solid white;
+
+    box-shadow:
+
+    0 25px 60px rgba(192,132,252,.25);
+
+}
+
+
+
+
+
+/* =====================
+BUTTONS
+===================== */
+
+
+button{
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #c084fc,
+
+    #f9a8d4
+
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:14px 30px;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 10px 25px rgba(192,132,252,.3);
+
+}
+
+
+
+
+
+/* =====================
+FEATURE CARDS
+===================== */
+
+
+.features{
+
+    padding:70px 8%;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.feature-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    border:1px solid #f3e8ff;
+
+    box-shadow:
+
+    0 15px 35px rgba(192,132,252,.12);
+
+    transition:.3s;
+
+}
+
+
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.feature-card h2{
+
+    color:#9333ea;
+
+    margin-bottom:15px;
+
+}
+.card{
+
+    width:520px;
+
+    background:
+
+    rgba(255,255,255,0.65);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    padding:40px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,0.5);
+
+    box-shadow:
+
+    0 20px 50px rgba(192,132,252,0.18);
+
+}
+
+
+
+
+
+/* =====================
+HOW IT WORKS
+===================== */
+
+
+.workflow{
+
+    padding:70px 8%;
+
+    text-align:center;
+
+}
+
+
+
+.workflow h2{
+
+    color:#7e22ce;
+
+    font-size:35px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.steps{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.step-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:
+
+    0 15px 30px rgba(249,168,212,.15);
+
+}
+
+
+
+.step-card span{
+
+    display:inline-flex;
+
+    width:45px;
+
+    height:45px;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f9a8d4;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* =====================
+INNER PAGES
+===================== */
+
+
+.page{
+
+    min-height:80vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px;
+
+}
+
+
+
+.card{
+
+    width:520px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    border:1px solid #f3e8ff;
+
+    box-shadow:
+
+    0 20px 45px rgba(192,132,252,.15);
+
+}
+
+
+
+.card h1{
+
+    color:#7e22ce;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.card p{
+
+    color:#64748b;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:15px;
+
+    border:1px solid #e9d5ff;
+
+    background:#fffaff;
+
+    outline:none;
+
+}
+
+
+
+input:focus,
+textarea:focus{
+
+    border-color:#c084fc;
+
+}
+
+
+
+textarea{
+
+    height:130px;
+
+}
+
+
+
+
+
+/* =====================
+AI ASSISTANT
+===================== */
+
+
+#answer{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    background:#faf5ff;
+
+    border-radius:20px;
+
+    border-left:5px solid #c084fc;
+
+    color:#6b21a8;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+/* =====================
+PETS DISPLAY
+===================== */
+
+
+#petsList{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    background:#fff1f7;
+
+    border-radius:20px;
+
+    border-left:5px solid #f9a8d4;
+
+}
+
+
+
+
+
+/* =====================
+VISION PAGE
+===================== */
+
+
+.upload-box{
+
+    text-align:center;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+
+    145deg,
+
+    #fff1f7,
+
+    #f5f3ff
+
+    );
+
+}
+
+
+
+.camera-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.upload-box h3{
+
+    color:#7e22ce;
+
+    font-size:30px;
+
+}
+
+
+
+.upload-box p{
+
+    margin:15px 0;
+
+}
+
+
+
+#visionResult{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    background:white;
+
+    border-radius:20px;
+
+    border-left:5px solid #c084fc;
+
+}
+
+
+
+
+
+/* =====================
+FOOTER
+===================== */
+
+
+footer{
+
+    padding:25px;
+
+    text-align:center;
+
+    background:white;
+
+    color:#64748b;
+
+    border-top:1px solid #f3e8ff;
+
+}
+
+
+
+
+
+/* =====================
+RESPONSIVE
+===================== */
+
+
+@media(max-width:800px){
+
+
+.menu{
+
+    display:none;
+
+}
+
+
+.hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+
+.pet-image img{
+
+    width:280px;
+
+    height:280px;
+
+    margin-top:40px;
+
+}
+
+
+
+.features,
+.steps{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.card{
+
+    width:100%;
+
+}
+
+
+}
+.identity-card{
+
+
+margin-top:30px;
+
+padding:30px;
+
+text-align:center;
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#fff1f7,
+
+#f5f3ff
+
+);
+
+
+border-radius:30px;
+
+
+box-shadow:
+
+0 15px 40px rgba(192,132,252,.2);
+
+
+}
+
+
+
+.qr-box{
+
+background:white;
+
+padding:15px;
+
+display:inline-block;
+
+border-radius:20px;
+
+margin:20px;
+
+}
+
+
+
+.qr-box img{
+
+width:150px;
+
+height:150px;
+
+}
+
+
+
+.identity-card h2{
+
+color:#7e22ce;
+
+}
+
+
+.identity-card button{
+
+margin-top:15px;
+
+}
+/* My Pets Large Dashboard */
+
+.pets-dashboard{
+
+    width:1100px;
+
+    max-width:95%;
+
+    min-height:700px;
+
+    padding:50px;
+
+}
+
+
+
+.pets-dashboard h1{
+
+    font-size:36px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.pets-dashboard button{
+
+    width:250px;
+
+    margin:20px 0;
+
+}
+
+
+
+.pet-profile-card{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:40px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:35px;
+
+    border-radius:30px;
+
+}
+
+
+
+.identity-card{
+
+    padding:40px;
+
+    border-radius:30px;
+
+}
+
+
+
+.qr-box img{
+
+    width:250px;
+
+    height:250px;
+
+}
+
+
+
+.health-card{
+
+    padding:40px;
+
+    border-radius:30px;
+
+}
+
+
+
+@media(max-width:800px){
+
+    .pet-profile-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .pets-dashboard{
+
+        width:95%;
+
+    }
+
+}
+.vision-result-card{
+
+    margin-top:20px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #fdf2f8,
+    #f3e8ff
+    );
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+
+.vision-result-card h3{
+
+    color:#7e22ce;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.verified{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+
+
+.vision-error{
+
+    padding:20px;
+
+    background:#fee2e2;
+
+    border-radius:15px;
+
+    color:#b91c1c;
+
+}
