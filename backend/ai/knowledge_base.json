@@ -1,22 +1,50 @@
 [
  {
+  "topic":"Zigmosis AI Pet Identity Platform",
+  "content":"Zigmosis is an AI-powered pet identity and health platform that helps pet owners create digital identities for their pets. Each pet can have a QR-based identity containing important information such as pet details, owner contact information and health notes. Zigmosis helps reconnect lost pets with their owners and provides AI-based pet care assistance."
+ },
+ {
+  "topic":"Lost pet emergency",
+  "content":"If a pet is lost, owners should immediately check nearby areas, contact local shelters, share recent photos and use the Zigmosis QR identity system. The QR tag helps anyone who finds the pet access important identification information and contact the owner."
+ },
+ {
   "topic":"Dog vomiting",
-  "content":"Dog vomiting can happen because of food changes, eating unsuitable items, infections, parasites, or digestive problems. If vomiting continues or contains blood, veterinary attention is recommended."
+  "content":"Dog vomiting can happen because of sudden food changes, eating unsuitable items, infections, parasites or digestive problems. Owners should monitor the pet and provide access to water. If vomiting continues, contains blood, or the dog shows weakness, veterinary attention is recommended."
  },
  {
   "topic":"Dog vaccination",
-  "content":"Dogs commonly require vaccines such as rabies, distemper, parvovirus and other core vaccinations depending on veterinary recommendations."
+  "content":"Dogs commonly require vaccinations such as rabies, distemper, parvovirus and other core vaccines depending on veterinary recommendations. Regular vaccination helps protect pets from serious diseases and supports long-term health."
  },
  {
   "topic":"Cat not eating",
-  "content":"Cats refusing food may happen because of stress, dental problems, infections or illness. If a cat does not eat for more than 24 hours veterinary advice is recommended."
+  "content":"Cats refusing food may happen because of stress, dental issues, infections or illness. If a cat does not eat for more than 24 hours, veterinary advice is recommended because cats can develop health complications quickly."
  },
  {
   "topic":"Pet nutrition",
-  "content":"Pets need balanced nutrition suitable for their species, age and health condition. Avoid feeding harmful human foods."
+  "content":"Pets need balanced nutrition based on their species, age, size and health condition. Dogs and cats require appropriate food with essential nutrients. Avoid feeding pets harmful human foods such as chocolate, onions, garlic and foods containing toxic ingredients."
  },
  {
-  "topic":"Emergency symptoms",
-  "content":"Difficulty breathing, severe bleeding, seizures, poisoning and unconsciousness require immediate veterinary care."
+  "topic":"Pet health monitoring",
+  "content":"Regular health monitoring includes checking eating habits, activity levels, weight changes, vaccination records and unusual symptoms. Keeping digital health information helps owners and veterinarians make better decisions."
+ },
+ {
+  "topic":"Pet emergency symptoms",
+  "content":"Difficulty breathing, severe bleeding, seizures, poisoning, unconsciousness or sudden collapse are emergency situations that require immediate veterinary assistance."
+ },
+ {
+  "topic":"Dog not eating",
+  "content":"A dog may stop eating because of stress, illness, dental problems, digestive issues or changes in environment. Monitor behaviour and provide fresh water. If loss of appetite continues, consult a veterinarian."
+ },
+ {
+  "topic":"Pet QR identity",
+  "content":"A Zigmosis QR pet identity tag provides quick access to important pet information. When scanned, it can help identify the pet and connect the finder with the owner using registered contact details."
+ },
+ {
+  "topic":"AI pet assistant",
+  "content":"The Zigmosis AI assistant provides general pet care guidance by using a knowledge base and retrieval system. It can answer questions about pet health, nutrition, safety and the Zigmosis platform. It does not replace professional veterinary advice."
+ },
+ {
+  "topic":"Pet safety",
+  "content":"Pet owners can improve safety by keeping identification records updated, using secure contact information, maintaining vaccinations and monitoring their pet's environment."
  }
 ]

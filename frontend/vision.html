@@ -2,83 +2,560 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vision Check | Zigmosis AI</title>
+<title>AI Vision Check — Zigmosis AI</title>
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 60px;
+    z-index:10;
+    background:transparent;
+}
+
+
+.logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    font-size:24px;
+    font-weight:700;
+}
+
+
+.logo-icon{
+    font-size:22px;
+}
+
+
+.menu{
+    display:flex;
+    gap:30px;
+}
+
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
+
+
+.menu a:hover,
+.menu a.active{
+    color:#c5a75e;
+}
+
+
+
+/* ================= BACKGROUND ================= */
+
+
+.bg-photo{
+
+    position:fixed;
+    inset:0;
+
+    background-image:url("images/reg.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
+
+}
+
+
+.bg-photo::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(12,22,20,0.65),
+    rgba(12,22,20,0.85)
+    );
+
+}
+
+
+
+/* ================= PAGE ================= */
+
+
+.vision-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding-top:140px;
+
+    color:white;
+
+}
+
+
+
+.vision-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.vision-header h1{
+
+    font-size:40px;
+
+    font-style:italic;
+
+    margin-bottom:10px;
+
+}
+
+
+.vision-header p{
+
+    color:rgba(255,255,255,0.75);
+
+}
+
+
+
+/* ================= CARD ================= */
+
+
+.scan-card{
+
+    width:430px;
+
+    padding:35px;
+
+    text-align:center;
+
+    background:rgba(18,33,29,0.55);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+}
+
+
+
+/* ================= UPLOAD ================= */
+
+
+.drop-zone{
+
+    position:relative;
+
+    display:block;
+
+    height:260px;
+
+    border:2px dashed rgba(255,255,255,0.4);
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+}
+
+
+
+.drop-zone:hover{
+
+    border-color:#c5a75e;
+
+}
+
+
+
+.drop-zone input{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    top:0;
+
+    left:0;
+
+    opacity:0;
+
+    cursor:pointer;
+
+    z-index:5;
+
+}
+
+
+
+#dropContent{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+.icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.label{
+
+    color:white;
+
+}
+
+
+
+/* PREVIEW */
+
+
+.preview-img{
+
+    display:none;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+}
+
+
+
+/* BUTTON */
+
+
+.scan-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+}
+
+
+
+/* SCAN ANIMATION */
+
+
+.scan-visual{
+
+    display:none;
+
+    height:4px;
+
+    margin-top:20px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,0.1);
+
+}
+
+
+
+.scan-visual.active{
+
+    display:block;
+
+}
+
+
+
+.scan-line{
+
+    width:30%;
+
+    height:100%;
+
+    background:#c5a75e;
+
+    animation:scan 1s infinite;
+
+}
+
+
+
+@keyframes scan{
+
+
+from{
+transform:translateX(-100%);
+}
+
+to{
+transform:translateX(400%);
+}
+
+
+}
+
+
+
+/* RESULT */
+
+
+.result-box{
+
+    display:none;
+
+    margin-top:25px;
+
+    padding:20px;
+
+    text-align:left;
+
+    background:rgba(255,255,255,0.05);
+
+    border-radius:15px;
+
+}
+
+
+
+.result-box.show{
+
+    display:block;
+
+}
+
+
+
+.r-title{
+
+    color:#c5a75e;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.result-line{
+
+    margin:10px 0;
+
+}
+
+
+
+.check{
+
+    color:#c5a75e;
+
+}
+
+
+
+/* DISCLAIMER */
+
+
+.disclaimer{
+
+    margin-top:25px;
+
+    color:rgba(255,255,255,0.7);
+
+    font-size:13px;
+
+}
+
+
+
+
+</style>
+
 </head>
+
 
 
 <body>
 
 
-<nav>
+<nav class="navbar">
 
 <div class="logo">
-🐾 Zigmosis AI
+
+<span class="logo-icon">🐾</span>
+
+Zigmosis AI
+
 </div>
 
 
 <div class="menu">
 
 <a href="index.html">Home</a>
+
+<a href="about.html">About Us</a>
+
 <a href="register.html">Register Pet</a>
+
 <a href="pets.html">My Pets</a>
+
 <a href="assistant.html">AI Assistant</a>
-<a href="vision.html">Vision Check</a>
+
+<a href="vision.html" class="active">Vision Check</a>
 
 </div>
+
 
 </nav>
 
 
 
-
-<section class="page">
-
-
-<div class="card">
+<div class="bg-photo"></div>
 
 
-<div class="upload-box">
+
+<div class="vision-page">
 
 
-<div class="camera-icon">
+<div class="vision-header">
+
+<h1>AI Vision Check</h1>
+
+<p>Upload your pet image for identity verification</p>
 
 </div>
 
 
-<h3>
-AI Vision Verification
-</h3>
+
+<div class="scan-card">
 
 
-<p>
-Upload your pet image and let Zigmosis AI analyse it.
-</p>
+<label class="drop-zone">
+
+
+<input type="file" id="fileInput" accept="image/*">
+
+
+<img id="previewImg" class="preview-img">
+
+
+<div id="dropContent">
+
+<div class="icon">
+🐾
+</div>
+
+<div class="label">
+Upload Pet Image
+</div>
+
+</div>
+
+
+</label>
 
 
 
-<input 
-type="file" 
-id="petImage"
->
 
+<button id="scanBtn" class="btn btn-primary scan-btn" disabled>
 
-
-<button onclick="checkVision()">
-
- Analyse Pet
+Scan Pet
 
 </button>
 
 
 
-<div id="visionResult">
+<div class="scan-visual" id="scanVisual">
+
+<div class="scan-line"></div>
+
+</div>
+
+
+
+
+<div class="result-box" id="resultBox">
+
+
+<div class="r-title">
+AI Result
+</div>
+
+
+<div class="result-line">
+<span class="check">✓</span>
+Pet detected
+</div>
+
+
+<div class="result-line">
+<span class="check">✓</span>
+Image processed
+</div>
+
+
+<div class="result-line">
+<span class="check">✓</span>
+Identity verification completed
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="disclaimer">
+
+AI assistance only. Not a veterinary diagnosis.
 
 </div>
 
@@ -87,14 +564,101 @@ id="petImage"
 </div>
 
 
-</div>
-
-
-</section>
 
 
 
-<script src="script.js"></script>
+<script>
+
+
+const fileInput=document.getElementById("fileInput");
+
+const previewImg=document.getElementById("previewImg");
+
+const dropContent=document.getElementById("dropContent");
+
+const scanBtn=document.getElementById("scanBtn");
+
+const scanVisual=document.getElementById("scanVisual");
+
+const resultBox=document.getElementById("resultBox");
+
+
+
+fileInput.addEventListener("change",function(){
+
+
+const file=this.files[0];
+
+
+if(!file) return;
+
+
+
+const reader=new FileReader();
+
+
+
+reader.onload=function(e){
+
+
+previewImg.src=e.target.result;
+
+previewImg.style.display="block";
+
+dropContent.style.display="none";
+
+scanBtn.disabled=false;
+
+
+};
+
+
+
+reader.readAsDataURL(file);
+
+
+
+});
+
+
+
+
+scanBtn.addEventListener("click",function(){
+
+
+scanBtn.disabled=true;
+
+
+scanVisual.classList.add("active");
+
+
+resultBox.classList.remove("show");
+
+
+
+setTimeout(()=>{
+
+
+scanVisual.classList.remove("active");
+
+
+resultBox.classList.add("show");
+
+
+scanBtn.disabled=false;
+
+
+
+},1500);
+
+
+
+});
+
+
+
+</script>
+
 
 
 </body>

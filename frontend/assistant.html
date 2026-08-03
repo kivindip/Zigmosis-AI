@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Assistant | Zigmosis</title>
+<title>PawPal AI Assistant | Zigmosis</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
 
-<nav>
+<nav class="navbar">
 
 <div class="logo">
 🐾 Zigmosis AI
 </div>
 
-
 <div class="menu">
 
 <a href="index.html">Home</a>
+<a href="about.html">About Us</a>
 <a href="register.html">Register Pet</a>
 <a href="pets.html">My Pets</a>
-<a href="assistant.html">AI Assistant</a>
+<a href="assistant.html" class="active">AI Assistant</a>
 <a href="vision.html">Vision Check</a>
 
 </div>
@@ -37,44 +35,53 @@
 
 
 
-<section class="page">
+<div class="assistant-page">
 
 
-<div class="card">
-
-
-<h1> Zigmosis AI Assistant</h1>
-
+<h1>
+🐾 PawPal AI
+</h1>
 
 <p>
-Ask questions about pet health and care.
+Your intelligent pet healthcare companion
 </p>
 
+<script>
+const petData = JSON.parse(localStorage.getItem("zigmosisPet"));
 
-<textarea 
-id="question"
-placeholder="Example: My dog is not eating, what should I do?">
-</textarea>
+console.log(petData);
+</script>
+<div class="chat-box" id="chatBox">
 
+<div class="bot-message">
 
+Hello! I'm PawPal 🐾  
+I can help with pet health, nutrition, vaccination and care.
 
-<button onclick="askAI()">
-
-Ask AI
-
-</button>
-
-
-
-
-<div id="answer"></div>
-
+</div>
 
 
 </div>
 
 
-</section>
+
+<div class="chat-input">
+
+<input 
+id="userInput"
+placeholder="Ask PawPal about your pet..."
+>
+
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+
+</div>
+
+
+</div>
 
 
 
@@ -82,5 +89,4 @@ Ask AI
 
 
 </body>
-
 </html>

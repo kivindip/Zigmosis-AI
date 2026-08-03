@@ -50,6 +50,7 @@ class Pet(BaseModel):
 
 class ChatRequest(BaseModel):
     question: str
+    pet: dict = {}
 
 
 # Test backend
@@ -106,8 +107,9 @@ def ai_chat(data: ChatRequest):
     try:
 
         answer = generate_answer(
-            data.question
-        )
+    data.question,
+    data.pet
+)
 
 
         safe_answer = protect_response(
@@ -166,6 +168,60 @@ async def vision_check(
         return {
             "message": "Image processed successfully",
             "embedding_size": len(embedding)
+        }
+
+
+    except Exception as e:
+
+        return {
+            "error": str(e)
+        }
+    # Update pet
+@app.put("/pets/{pet_id}")
+def update_pet(pet_id: str, pet: Pet):
+
+    try:
+
+        data = {
+            "name": pet.name,
+            "species": pet.species,
+            "breed": pet.breed,
+            "age": pet.age,
+            "owner_name": pet.owner_name,
+            "owner_contact": pet.owner_contact,
+            "medical_notes": pet.medical_notes,
+            "qr_token": pet.qr_token
+        }
+
+
+        response = supabase.table("pets")\
+            .update(data)\
+            .eq("id", pet_id)\
+            .execute()
+
+
+        return response.data
+
+
+    except Exception as e:
+
+        return {
+            "error": str(e)
+        }
+    # Delete pet
+@app.delete("/pets/{pet_id}")
+def delete_pet(pet_id: str):
+
+    try:
+
+        response = supabase.table("pets")\
+            .delete()\
+            .eq("id", pet_id)\
+            .execute()
+
+
+        return {
+            "message": "Pet deleted successfully"
         }
 
 

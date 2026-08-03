@@ -244,6 +244,7 @@ Owner: ${pet.owner_name}`;
 
 
 
+
     const qrCode =
 
     `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrData)}`;
@@ -605,5 +606,80 @@ async function checkVision(){
 
     }
 
+
+}
+async function sendMessage() {
+
+    const input = document.getElementById("userInput");
+    const chatBox = document.getElementById("chatBox");
+
+    const question = input.value.trim();
+
+    if (!question) return;
+
+
+    // show user message
+    chatBox.innerHTML += `
+        <div class="user-message">
+            ${question}
+        </div>
+    `;
+
+
+    input.value = "";
+
+
+    try {
+        chatBox.innerHTML += `
+<div class="bot-message" id="thinking">
+PawPal is thinking... 🐾
+</div>
+`;
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/ai/chat",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+    question: question,
+
+    pet: petData
+
+})
+            }
+        );
+
+
+        const data = await response.json();
+        document.getElementById("thinking").remove();
+
+
+        chatBox.innerHTML += `
+            <div class="bot-message">
+                ${data.answer}
+            </div>
+        `;
+
+
+    } catch(error) {
+
+        chatBox.innerHTML += `
+            <div class="bot-message">
+                Sorry, PawPal is currently unavailable.
+            </div>
+        `;
+
+        console.log(error);
+
+    }
+
+
+    chatBox.scrollTop = chatBox.scrollHeight;
 
 }

@@ -1,95 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Register Pet | Zigmosis</title>
-
+<title>Register Pet — Zigmosis AI</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+    z-index: 10;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+    transform: none;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+  .logo-icon { font-style: normal; font-size: 22px; }
+  .menu { display: flex; gap: 30px; }
+  .menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    transition: 0.3s;
+  }
+  .menu a:hover, .menu a.active { color: #c5a75e; background: none; }
+  @media (max-width: 860px) {
+    .navbar { padding: 18px 24px; flex-wrap: wrap; gap: 12px; }
+    .menu { gap: 16px; flex-wrap: wrap; row-gap: 8px; }
+    .menu a { font-size: 13px; }
+  }
 
+  .register-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 150px 20px 60px;
+    overflow: hidden;
+  }
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-color: #0C1614;
+    background-image: url('images/register-bg.jpg');
+  }
+  
+  .bg-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(176, 147, 205, 0.65),
+        rgba(35, 15, 60, 0.85)
+    );
+}
+
+  .form-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 40px 36px 36px;
+    backdrop-filter: blur(18px);
+    background: rgba(18,33,29,0.55);
+    color: #ffffff;
+  }
+  .form-card h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 6px;
+    color: #ffffff;
+  }
+  .form-card .sub {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 30px;
+  }
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 7px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .field input::placeholder, .field textarea::placeholder {
+    color: rgba(255,255,255,0.45);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--gold);
+  }
+  .field select option { color: #12211D; }
+  .field textarea { resize: vertical; min-height: 70px; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  select { appearance: none; }
+</style>
 </head>
-
-
 <body>
 
-
-<nav>
-
-<div class="logo">
-🐾 Zigmosis AI
-</div>
-
-
-<div class="menu">
-
-<a href="index.html">Home</a>
-<a href="register.html">Register Pet</a>
-<a href="pets.html">My Pets</a>
-<a href="assistant.html">AI Assistant</a>
-<a href="vision.html">Vision Check</a>
-
-</div>
-
+<nav class="navbar">
+  <div class="logo">
+    <span class="logo-icon">🐾</span>
+    Zigmosis AI
+  </div>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="register.html" class="active">Register Pet</a>
+    <a href="pets.html">My Pets</a>
+    <a href="assistant.html">AI Assistant</a>
+    <a href="vision.html">Vision Check</a>
+  </div>
 </nav>
 
+<div class="bg-photo" id="bgPhoto"></div>
 
+<div class="register-page">
+  <form class="form-card tag" id="petForm">
+    <h1>🐾 Register Your Pet</h1>
+    <p class="sub">Create a digital identity in under a minute</p>
 
-<section class="page">
+    <div class="field">
+      <label for="petName">Pet Name</label>
+      <input id="petName" type="text" placeholder="e.g. Max" required>
+    </div>
 
+    <div class="row-2">
+      <div class="field">
+        <label for="species">Species</label>
+        <select id="species">
+          <option>Dog</option>
+          <option>Cat</option>
+          <option>Bird</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="breed">Breed</label>
+        <input id="breed" type="text" placeholder="e.g. Labrador">
+      </div>
+    </div>
 
-<div class="card">
+    <div class="field">
+      <label for="age">Age</label>
+      <input id="age" type="number" min="0" placeholder="e.g. 3">
+    </div>
 
+    <div class="field">
+      <label for="ownerName">Owner Name</label>
+      <input id="ownerName" type="text" placeholder="Your full name" required>
+    </div>
 
-<h1>🐶 Register Your Pet</h1>
+    <div class="field">
+      <label for="ownerContact">Owner Contact</label>
+      <input id="ownerContact" type="text" placeholder="Phone or email" required>
+    </div>
 
+    <div class="field">
+      <label for="medicalNotes">Medical Notes</label>
+      <textarea id="medicalNotes" placeholder="Allergies, conditions, medication..."></textarea>
+    </div>
 
-<input id="name" placeholder="Pet Name">
-
-
-<input id="species" placeholder="Species">
-
-
-<input id="breed" placeholder="Breed">
-
-
-<input id="age" placeholder="Age">
-
-
-<input id="owner_name" placeholder="Owner Name">
-
-
-<input id="owner_contact" placeholder="Owner Contact">
-
-
-<textarea 
-id="medical_notes"
-placeholder="Medical Notes">
-</textarea>
-
-
-
-<button onclick="registerPet()">
-
-Register Pet
-
-</button>
-
-
-
+    <button type="submit" class="btn btn-primary submit-btn">Create Identity →</button>
+  </form>
 </div>
 
+<script>
 
-</section>
+document.getElementById("petForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
 
 
+    const petData = {
+
+        name: document.getElementById("petName").value,
+
+        species: document.getElementById("species").value,
+
+        breed: document.getElementById("breed").value || "Not specified",
+
+        age: document.getElementById("age").value + " years",
+
+        ownerName: document.getElementById("ownerName").value,
+
+        ownerContact: document.getElementById("ownerContact").value,
+
+        medicalNotes: document.getElementById("medicalNotes").value || "No medical notes"
+
+    };
 
 
-<script src="script.js"></script>
+    document.getElementById('petForm').addEventListener('submit', async function(e){
 
+    e.preventDefault();
+
+
+    const petData = {
+
+        name: document.getElementById('petName').value,
+
+        species: document.getElementById('species').value,
+
+        breed: document.getElementById('breed').value,
+
+        age: document.getElementById('age').value,
+
+        owner_name: document.getElementById('ownerName').value,
+
+        owner_contact: document.getElementById('ownerContact').value,
+
+        medical_notes: document.getElementById('medicalNotes').value,
+
+        qr_token: Date.now().toString()
+
+    };
+
+
+    try {
+
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/pets",
+            {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+
+                body:JSON.stringify(petData)
+
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        console.log(data);
+
+
+        alert("Pet registered successfully 🐾");
+
+
+        window.location.href="pets.html";
+
+
+    }
+
+
+    catch(error){
+
+        console.log(error);
+
+        alert("Could not register pet");
+
+    }
+
+
+});
+
+});
+
+</script>
 
 </body>
-
 </html>

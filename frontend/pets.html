@@ -6,9 +6,115 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Pets | Zigmosis</title>
+<title>My Pet | Zigmosis AI</title>
 
 <link rel="stylesheet" href="style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<style>
+
+.profile-page{
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:120px 20px;
+
+}
+
+
+.pet-card{
+
+max-width:800px;
+width:100%;
+display:grid;
+grid-template-columns:1fr 1fr;
+
+background:rgba(18,33,29,0.65);
+backdrop-filter:blur(15px);
+
+border-radius:20px;
+overflow:hidden;
+
+color:white;
+
+}
+
+
+.pet-info{
+
+padding:40px;
+
+}
+
+
+.qr-section{
+
+padding:40px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+background:rgba(255,255,255,0.05);
+
+}
+
+
+
+.avatar{
+
+font-size:60px;
+margin-bottom:20px;
+
+}
+
+
+h1{
+
+font-size:38px;
+
+}
+
+
+.detail{
+
+display:flex;
+justify-content:space-between;
+
+padding:12px 0;
+
+border-bottom:1px solid rgba(255,255,255,0.2);
+
+}
+
+
+
+#qrcode{
+
+background:white;
+padding:15px;
+border-radius:15px;
+
+}
+
+
+
+@media(max-width:700px){
+
+.pet-card{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
 
 </head>
 
@@ -16,7 +122,8 @@
 <body>
 
 
-<nav>
+
+<nav class="navbar">
 
 <div class="logo">
 🐾 Zigmosis AI
@@ -26,59 +133,194 @@
 <div class="menu">
 
 <a href="index.html">Home</a>
+
+<a href="about.html">About Us</a>
+
 <a href="register.html">Register Pet</a>
-<a href="pets.html">My Pets</a>
+
+<a href="pets.html" class="active">My Pets</a>
+
 <a href="assistant.html">AI Assistant</a>
+
 <a href="vision.html">Vision Check</a>
 
 </div>
+
 
 </nav>
 
 
 
+<div class="profile-page">
 
 
-<section class="page">
+<div class="pet-card">
 
 
-<div class="card pets-dashboard">
+<div class="pet-info">
 
 
-<h1>
-🐾 My Registered Pets
+
+
+
+<h1 id="name">
+Max
 </h1>
 
 
-
-<p>
-View your pet digital identity and health information.
+<p id="type">
+Dog
 </p>
 
 
 
-<button onclick="viewPets()">
+<div class="detail">
 
-Load Pets
+<span>Owner</span>
 
-</button>
+<b id="owner">
+</b>
+
+</div>
 
 
 
-<div id="petsList"></div>
+<div class="detail">
+
+<span>Contact</span>
+
+<b id="contact">
+</b>
+
+</div>
+
+
+
+
+<div class="detail">
+
+<span>Age</span>
+
+<b id="age">
+</b>
+
+</div>
+
+
+
+
+<div class="detail">
+
+<span>Medical</span>
+
+<b id="medical">
+</b>
+
+</div>
 
 
 
 </div>
 
 
-</section>
+
+<div class="qr-section">
+
+
+<h2>
+QR Pet Identity
+</h2>
+
+
+<div id="qrcode"></div>
+
+
+<p>
+Scan to view pet information
+</p>
+
+
+</div>
 
 
 
+</div>
 
 
-<script src="script.js"></script>
+</div>
+
+
+
+<script>
+
+
+const pet = JSON.parse(
+localStorage.getItem("zigmosisPet")
+);
+
+
+
+if(pet){
+
+
+document.getElementById("name").innerText=pet.name;
+
+
+document.getElementById("type").innerText=
+pet.species+" • "+pet.breed;
+
+
+document.getElementById("owner").innerText=
+pet.ownerName;
+
+
+document.getElementById("contact").innerText=
+pet.ownerContact;
+
+
+document.getElementById("age").innerText=
+pet.age;
+
+
+document.getElementById("medical").innerText=
+pet.medicalNotes;
+
+
+
+}
+
+
+
+new QRCode(document.getElementById("qrcode"),{
+
+
+text:
+
+`Zigmosis Pet Identity
+
+Name: ${pet.name}
+
+Species: ${pet.species}
+
+Breed: ${pet.breed}
+
+Age: ${pet.age}
+
+Owner: ${pet.ownerName}
+
+Contact: ${pet.ownerContact}`,
+
+width:160,
+
+height:160
+
+
+});
+
+
+
+</script>
+
 
 
 </body>

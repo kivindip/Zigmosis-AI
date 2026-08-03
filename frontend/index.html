@@ -1,438 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zigmosis AI | Smart Pet Healthcare</title>
-
+<title>Zigmosis AI — Every Pet Has A Story</title>
 <link rel="stylesheet" href="style.css">
-
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 40px 24px;
+  }
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    /* Replace this URL with your own pet photo, e.g. images/hero-dog.jpg */
+    background-image: url('images/home.jpg');
+  }
+  .hero-bg.placeholder {
+    background-image: none;
+    background: var(--bg-deep);
+  }
+  .hero-bg.placeholder .fallback-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60vh;
+    opacity: 0.06;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    pointer-events: none;
+    z-index: -1;
+}
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise .8s ease forwards;
+  }
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(40px, 8vw, 88px);
+    line-height: 1.02;
+    margin: 0;
+    font-style: italic;
+    color: var(--cream);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.35);
+    opacity: 0;
+    animation: rise .9s ease .15s forwards;
+  }
+  .subline {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: clamp(15px, 2.4vw, 19px);
+    color: var(--cream-dim);
+    letter-spacing: 0.01em;
+    max-width: 420px;
+    margin-top: 26px;
+    opacity: 0;
+    animation: rise .9s ease .45s forwards;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .scroll-cta {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--cream-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+  .explore-btn {
+    margin-top: 34px;
+    opacity: 0;
+    animation: rise .9s ease .6s forwards;
+  }
+</style>
 </head>
-
-
 <body>
 
+<div class="hero-bg" id="heroBg"><div class="fallback-icon">🐕</div></div>
 
-<!-- Navigation -->
+<div class="hero">
+  <div class="brand">Zigmosis AI</div>
+  <h1 class="headline">Every Pet Has<br>A Story</h1>
+  <p class="subline">Smart Digital Identity<br>For Your Beloved Pets</p>
 
-<nav>
+  <a href="about.html" class="btn btn-primary explore-btn">Explore →</a>
 
-<div class="logo">
-
-<span class="logo-icon">🐾</span>
-
-Zigmosis AI
-
+  <a href="about.html" class="scroll-cta" aria-label="Learn more">
+    <span>↓</span>
+  </a>
 </div>
 
-
-
-<div class="menu">
-
-<a href="index.html">Home</a>
-
-<a href="register.html">Register Pet</a>
-
-<a href="pets.html">My Pets</a>
-
-<a href="assistant.html">AI Assistant</a>
-
-<a href="vision.html">Vision Check</a>
-
-</div>
-
-
-</nav>
-
-
-
-
-
-<!-- Hero Section -->
-
-<section class="hero">
-
-
-<div class="hero-text">
-
-
-<h1>
-
-Smart AI Healthcare
-
-<br>
-
-For Your Pets
-
-</h1>
-
-
-
-<p>
-
-A digital pet identity platform with AI-powered healthcare assistance,
-pet records and vision verification.
-
-</p>
-
-
-
-<a href="register.html">
-
-<button>
-
-Register Your Pet
-
-</button>
-
-</a>
-
-
-
-</div>
-
-
-
-
-
-<div class="pet-image">
-
-
-<div class="ai-circle">
-
-
-<img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b">
-
-
-</div>
-
-
-
-<div class="ai-badge">
-
- AI Pet Care
-
-</div>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-<!-- Features Section -->
-
-
-<section class="features">
-
-
-<div class="feature-card">
-
-
-<h2>
-
- Digital Identity
-
-</h2>
-
-
-<p>
-
-Create and manage your pet profile digitally with health information.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="feature-card">
-
-
-<h2>
-
- AI Assistant
-
-</h2>
-
-
-<p>
-
-Get intelligent pet care guidance using AI technology.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="feature-card">
-
-
-<h2>
-
- Vision Check
-
-</h2>
-
-
-<p>
-
-Verify pet images using AI-powered vision analysis.
-
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<!-- How it Works -->
-
-
-<section class="workflow">
-
-
-<h2>
-
-How Zigmosis Works
-
-</h2>
-
-
-
-<div class="steps">
-
-
-
-<div class="step-card">
-
-
-<span>
-
-1
-
-</span>
-
-
-
-<h3>
-
-Register Pet
-
-</h3>
-
-
-
-<p>
-
-Create your pet's digital identity and health profile.
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-<div class="step-card">
-
-
-<span>
-
-2
-
-</span>
-
-
-
-<h3>
-
-AI Health Assistant
-
-</h3>
-
-
-
-<p>
-
-Receive AI-powered pet care recommendations.
-
-</p>
-
-
-
-</div>
-
-
-
-
-
-<div class="step-card">
-
-
-<span>
-
-3
-
-</span>
-
-
-
-<h3>
-
-Vision Verification
-
-</h3>
-
-
-
-<p>
-
-Analyse pet images and support digital identity verification.
-
-</p>
-
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- Future Vision -->
-
-
-<section class="features">
-
-
-<div class="feature-card">
-
-
-<h2>
-
- Cloud Health Records
-
-</h2>
-
-
-<p>
-
-Secure digital storage for pet health information.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="feature-card">
-
-
-<h2>
-
- QR Pet Identity
-
-</h2>
-
-
-<p>
-
-Unique digital identity tags for every pet.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="feature-card">
-
-
-<h2>
-
- Health Monitoring
-
-</h2>
-
-
-<p>
-
-Track pet wellness information through smart insights.
-
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<footer>
-
-
-<p>
-
-© 2026 Zigmosis AI | Smart Pet Healthcare Platform
-
-</p>
-
-
-</footer>
-
-
-
+<script>
+  // Check if the background photo actually loads; fall back gracefully if not.
+  const img = new Image();
+  img.onerror = () => document.getElementById('heroBg').classList.add('placeholder');
+  img.src = 'images/home.jpg';
+</script>
 
 </body>
-
 </html>
