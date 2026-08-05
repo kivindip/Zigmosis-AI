@@ -88,101 +88,76 @@ async function registerPet(){
 // ==========================
 // AI Assistant
 // ==========================
+let chatHistory = [];
 
-async function askAI(){
-
-    const question = document.getElementById("question").value;
+function appendMessage(role, text){
 
     const answer = document.getElementById("answer");
 
+    const bubble = document.createElement("div");
+    bubble.className = role === "user" ? "user-message" : "bot-message";
+    bubble.innerText = text;
+
+    answer.appendChild(bubble);
+    answer.scrollTop = answer.scrollHeight;
+}
+
+async function askAI(){
+
+    const questionInput = document.getElementById("question");
+    const question = questionInput.value.trim();
 
     if(!question){
-
-        answer.innerHTML = "Please enter a question";
         return;
-
     }
 
+    appendMessage("user", question);
+    questionInput.value = "";
 
-    answer.innerHTML = " Zigmosis AI is thinking...";
+    const thinking = document.createElement("div");
+    thinking.className = "bot-message";
+    thinking.id = "thinking";
+    thinking.innerText = "PawPal is thinking... 🐾";
+    document.getElementById("answer").appendChild(thinking);
 
+    let pet = null;
+    try{
+        pet = JSON.parse(localStorage.getItem("lastPet"));
+    } catch(e){
+        pet = null;
+    }
 
     try{
 
-
         const response = await fetch(`${API_URL}/ai/chat`, {
-
             method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
-            },
-
+            headers:{ "Content-Type":"application/json" },
             body:JSON.stringify({
-
-                question: question
-
+                question: question,
+                pet: pet || {},
+                history: chatHistory
             })
-
         });
 
-
-
         const result = await response.json();
-
-
+        document.getElementById("thinking")?.remove();
 
         if(result.answer){
-
-
-            answer.innerHTML = `
-
-            <h3>
-            ✨ Zigmosis AI Response
-            </h3>
-
-            <p>
-            ${result.answer}
-            </p>
-
-            `;
-
-
+            appendMessage("bot", result.answer);
+            chatHistory.push({ role: "user", content: question });
+            chatHistory.push({ role: "assistant", content: result.answer });
+        } else {
+            appendMessage("bot", "❌ AI response unavailable");
         }
 
-        else{
-
-
-            answer.innerHTML = `
-
-            ❌ AI response unavailable
-
-            `;
-
-        }
-
-
-
-    }
-
-
-    catch(error){
-
-
+    } catch(error){
         console.log(error);
-
-
-        answer.innerHTML = `
-
-        ❌ AI connection failed
-
-        `;
-
-
+        document.getElementById("thinking")?.remove();
+        appendMessage("bot", "❌ AI connection failed");
     }
-
 
 }
+
 
 
 
@@ -683,3 +658,4 @@ PawPal is thinking... 🐾
     chatBox.scrollTop = chatBox.scrollHeight;
 
 }
+

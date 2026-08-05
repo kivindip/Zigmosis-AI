@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pet Details | Zigmosis</title>
+
+<link rel="stylesheet" href="missing-found.css">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+🐾 Zigmosis
+</div>
+
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About Us</a></li>
+
+<li><a href="register.html">Register Pet</a></li>
+
+<li>
+<a href="missing-found.html" class="active">
+Missing & Found
+</a>
+</li>
+
+<li>
+<a href="assistant.html">
+AI Assistant
+</a>
+</li>
+
+<li>
+<a href="vision.html">
+Vision Check
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+
+
+
+<section class="details-container">
+
+
+<div class="details-card">
+
+
+<img 
+id="petImage"
+class="details-image"
+alt="Pet">
+
+
+
+<div class="details-info">
+
+
+<span 
+id="petStatus"
+class="badge missing">
+Missing
+</span>
+
+
+
+<h1 id="petName">
+Pet Name
+</h1>
+
+
+
+<p id="petBreed"></p>
+
+<p id="petAge"></p>
+
+<p id="petGender"></p>
+
+<p id="petColour"></p>
+
+<p id="petLocation"></p>
+
+<p id="petDate"></p>
+
+<p id="petOwner"></p>
+
+<p id="petContact"></p>
+
+<p id="petDescription"></p>
+
+
+
+
+<div class="detail-buttons">
+
+
+<button class="btn-primary">
+
+I Found This Pet
+
+</button>
+
+
+
+<button class="btn-outline">
+
+Share Location
+
+</button>
+
+
+
+<button class="btn-outline">
+
+Share Post
+
+</button>
+
+
+
+<button 
+class="btn-delete"
+id="deleteBtn">
+
+Delete Post
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="map-box">
+
+
+<h2>
+Last Seen / Found Location
+</h2>
+
+
+<div class="map-placeholder">
+
+Map Location
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<script>
+
+
+// Get selected pet
+
+const selectedPet =
+
+JSON.parse(
+
+localStorage.getItem("selectedPet")
+
+);
+
+
+
+
+
+if(selectedPet){
+
+
+
+document.getElementById("petImage").src =
+
+"images/" + selectedPet.image;
+
+
+
+document.getElementById("petName").innerText =
+
+selectedPet.name || "Found Pet";
+
+
+
+document.getElementById("petBreed").innerText =
+
+"Breed: " + 
+(selectedPet.breed || "Not available");
+
+
+
+document.getElementById("petAge").innerText =
+
+"Age: " +
+(selectedPet.age || "Not available");
+
+
+
+document.getElementById("petGender").innerText =
+
+"Gender: " +
+(selectedPet.gender || "Not available");
+
+
+
+document.getElementById("petColour").innerText =
+
+"Colour: " +
+(selectedPet.colour || "Not available");
+
+
+
+document.getElementById("petLocation").innerText =
+
+"Location: " +
+selectedPet.location;
+
+
+
+document.getElementById("petDate").innerText =
+
+"Date: " +
+selectedPet.date;
+
+
+
+document.getElementById("petOwner").innerText =
+
+"Owner/Finder: " +
+(selectedPet.owner || "Not provided");
+
+
+
+document.getElementById("petContact").innerText =
+
+"Contact: " +
+selectedPet.contact;
+
+
+
+document.getElementById("petDescription").innerText =
+
+selectedPet.description || "";
+
+
+
+
+
+// Status badge
+
+const badge =
+
+document.getElementById("petStatus");
+
+
+
+if(selectedPet.type === "Found"){
+
+
+badge.innerText = "Found";
+
+badge.className = "badge found";
+
+
+}
+
+else{
+
+
+badge.innerText = "Missing";
+
+badge.className = "badge missing";
+
+
+}
+
+
+
+}
+
+else{
+
+
+document.getElementById("petName").innerText =
+"No Pet Selected";
+
+
+}
+
+
+
+
+
+// DELETE POST
+
+
+document
+
+.getElementById("deleteBtn")
+
+.onclick = function(){
+
+
+
+const confirmDelete =
+
+confirm(
+
+"Are you sure you want to delete this pet post?"
+
+);
+
+
+
+
+
+if(confirmDelete){
+
+
+
+let storageName;
+
+
+
+if(selectedPet.type === "Missing"){
+
+
+storageName = "missingPets";
+
+
+}
+
+else{
+
+
+storageName = "foundPets";
+
+
+}
+
+
+
+
+let pets =
+
+JSON.parse(
+
+localStorage.getItem(storageName)
+
+)
+
+|| [];
+
+
+
+
+
+pets = pets.filter(
+
+pet => pet.id !== selectedPet.id
+
+);
+
+
+
+
+
+localStorage.setItem(
+
+storageName,
+
+JSON.stringify(pets)
+
+);
+
+
+
+
+
+alert(
+
+"Pet post deleted successfully 🐾"
+
+);
+
+
+
+
+
+localStorage.removeItem("selectedPet");
+
+
+
+window.location.href =
+
+"missing-found.html";
+
+
+
+}
+
+
+};
+
+
+
+
+
+
+// Found button
+
+document
+
+.querySelector(".btn-primary")
+
+.onclick=function(){
+
+
+alert(
+
+"Thank you for helping! Contact the owner/finder to confirm."
+
+);
+
+
+};
+
+
+
+
+
+// Share buttons
+
+document
+
+.querySelectorAll(".btn-outline")
+
+.forEach(button=>{
+
+
+button.onclick=function(){
+
+
+alert(
+
+"Sharing feature activated 🐾"
+
+);
+
+
+};
+
+
+});
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

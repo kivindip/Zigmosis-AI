@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Report Missing Pet | Zigmosis</title>
+
+<link rel="stylesheet" href="missing-found.css">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+🐾 Zigmosis
+</div>
+
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+
+            <li><a href="register.html">Register Pet</a></li>
+
+            <li><a href="missing-found.html" class="active">
+                    Missing & Found
+                </a></li>
+
+            <li><a href="assistant.html">
+                    AI Assistant
+                </a></li>
+
+            <li><a href="vision.html">
+                    Vision Check
+                </a></li>
+
+
+</ul>
+
+
+</nav>
+
+
+
+
+<!-- FORM SECTION -->
+
+
+<section class="form-container">
+
+
+<div class="form-card">
+
+
+<h1>
+ Report Missing Pet
+</h1>
+
+
+<p>
+Help your pet return home safely.
+</p>
+
+
+
+
+<form id="missingForm">
+
+
+
+<label>
+Upload Pet Photo
+</label>
+
+<input 
+type="file"
+accept="image/*">
+
+
+
+
+
+<label>
+Pet Name
+</label>
+
+<input 
+type="text"
+id="petName"
+placeholder="Enter pet name"
+required>
+
+
+
+
+
+<label>
+Breed
+</label>
+
+<input 
+type="text"
+id="breed"
+placeholder="Enter breed"
+required>
+
+
+
+
+
+<label>
+Age
+</label>
+
+<input 
+type="number"
+id="age"
+placeholder="Pet age">
+
+
+
+
+
+<label>
+Gender
+</label>
+
+<select id="gender">
+
+<option>
+Select Gender
+</option>
+
+<option>
+Male
+</option>
+
+<option>
+Female
+</option>
+
+</select>
+
+
+
+
+
+<label>
+Colour
+</label>
+
+<input 
+type="text"
+id="colour"
+placeholder="Pet colour">
+
+
+
+
+
+
+<label>
+Last Seen Location
+</label>
+
+<input 
+type="text"
+id="location"
+placeholder="Example: Colombo">
+
+
+
+
+<label>
+Date Missing
+</label>
+
+<input 
+type="date"
+id="missingDate">
+
+
+
+
+
+<label>
+Description
+</label>
+
+<textarea
+id="description"
+placeholder="Describe your pet..."
+></textarea>
+
+
+
+
+
+
+<label>
+Reward (Optional)
+</label>
+
+<input 
+type="text"
+id="reward"
+placeholder="Example: Rs.5000">
+
+
+
+
+
+<label>
+Contact Number
+</label>
+
+<input 
+type="tel"
+id="contact"
+placeholder="Your phone number"
+required>
+
+
+
+
+
+<label>
+Upload QR Code (Optional)
+</label>
+
+<input 
+type="file"
+accept="image/*">
+
+
+
+
+
+<div class="form-buttons">
+
+
+<a href="missing-found.html"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+
+
+<button 
+type="submit"
+class="btn-primary">
+
+Submit
+
+</button>
+
+
+</div>
+
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+<script>
+
+document
+.getElementById("missingForm")
+.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+
+// Get uploaded image
+
+const imageInput =
+document.querySelector(
+'input[type="file"]'
+);
+
+
+let imageName = "";
+
+
+if(imageInput.files.length > 0){
+
+    imageName =
+    imageInput.files[0].name;
+
+}
+
+
+
+// Create missing pet object
+
+const missingPet = {
+
+
+id: Date.now(),
+
+
+type: "Missing",
+
+
+image: imageName,
+
+
+name:
+document.getElementById("petName").value,
+
+
+breed:
+document.getElementById("breed").value,
+
+
+age:
+document.getElementById("age").value,
+
+
+gender:
+document.getElementById("gender").value,
+
+
+colour:
+document.getElementById("colour").value,
+
+
+location:
+document.getElementById("location").value,
+
+
+date:
+document.getElementById("missingDate").value,
+
+
+description:
+document.getElementById("description").value,
+
+
+reward:
+document.getElementById("reward").value,
+
+
+contact:
+document.getElementById("contact").value
+
+
+};
+
+
+
+
+
+// Get existing missing pets
+
+let missingPets =
+
+JSON.parse(
+localStorage.getItem("missingPets")
+)
+
+|| [];
+
+
+
+
+
+// Add new pet
+
+missingPets.push(missingPet);
+
+
+
+
+
+// Save
+
+localStorage.setItem(
+
+"missingPets",
+
+JSON.stringify(missingPets)
+
+);
+
+
+
+
+
+alert(
+
+"Missing pet report submitted successfully 🐾"
+
+);
+
+
+
+
+
+window.location.href =
+
+"missing-found.html";
+
+
+
+});
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

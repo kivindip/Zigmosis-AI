@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Missing & Found Pets | Zigmosis</title>
+
+    <link rel="stylesheet" href="missing-found.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🐾 Zigmosis
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+
+            <li><a href="register.html">Register Pet</a></li>
+
+            <li><a href="missing-found.html" class="active">
+                    Missing & Found
+                </a></li>
+
+            <li><a href="assistant.html">
+                    AI Assistant
+                </a></li>
+
+            <li><a href="vision.html">
+                    Vision Check
+                </a></li>
+
+        </ul>
+
+        
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <span class="hero-badge">
+
+                🐾 Reunite Families
+
+            </span>
+
+            <h1>
+
+                Help Reunite Pets <br>
+
+                With Their Families
+
+            </h1>
+
+            <p>
+
+                Every report brings a beloved pet one step closer
+                to returning home.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="report-missing.html" class="btn-primary">
+
+                    Report Missing
+
+                </a>
+
+                <a href="report-found.html" class="btn-outline">
+
+                    Report Found
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-image">
+
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=700"
+                alt="Dog">
+
+            <img src="images/cat.jpg" alt="Missing Pet">
+               
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search pet name...">
+
+        </div>
+
+
+
+        <select>
+
+            <option>
+
+                Location
+
+            </option>
+
+            <option>
+
+                Colombo
+
+            </option>
+
+            <option>
+
+                Gampaha
+
+            </option>
+
+            <option>
+
+                Kandy
+
+            </option>
+
+        </select>
+
+
+
+        <select>
+
+            <option>
+
+                Breed
+
+            </option>
+
+            <option>
+
+                Labrador
+
+            </option>
+
+            <option>
+
+                German Shepherd
+
+            </option>
+
+            <option>
+
+                Persian Cat
+
+            </option>
+
+        </select>
+
+
+
+        <select>
+
+            <option>
+
+                Latest
+
+            </option>
+
+            <option>
+
+                Oldest
+
+            </option>
+
+        </select>
+
+    </section>
+
+    <!-- =========================
+        MISSING PETS
+========================= -->
+
+<section class="pet-section">
+
+    <h2 class="section-title">
+        🐾 Missing Pets
+    </h2>
+
+
+   <div class="pet-grid" id="missingContainer">
+
+
+        <div class="pet-card">
+
+
+            <img src="images/poodle.jpg" alt="Missing Pet"> 
+
+
+            <div class="pet-content">
+
+
+                <span class="badge missing">
+                    Missing
+                </span>
+
+
+                <h3>
+                    Bruno
+                </h3>
+
+
+                <p>
+                     Poodle
+                </p>
+
+
+                <p>
+                    Age: 3 Years
+                </p>
+
+
+                <p>
+                     Colombo
+                </p>
+
+
+                <p>
+                     Missing: 05 Aug 2026
+                </p>
+
+
+                <p>
+                     Reward: Rs.5000
+                </p>
+
+
+
+                <div class="card-buttons">
+
+                    <button 
+class="view-btn"
+onclick="openDetails('bruno')">
+View Details
+</button>
+
+
+                    <button class="seen-btn">
+                        I've Seen This Pet
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="pet-card">
+
+
+           
+            <img src="images/dog2.jpg" alt="Missing Pet">
+            
+
+
+            <div class="pet-content">
+
+
+                <span class="badge missing">
+                    Missing
+                </span>
+
+
+                <h3>
+                    Max
+                </h3>
+
+
+                <p>
+                     Labrador
+                </p>
+
+
+                <p>
+                    Age: 2 Years
+                </p>
+
+
+                <p>
+                     Kandy
+                </p>
+
+
+                <p>
+                     Missing: 01 Aug 2026
+                </p>
+
+
+
+                <div class="card-buttons">
+
+                    <button class="view-btn">
+                        View Details
+                    </button>
+
+
+                    <button class="seen-btn">
+                        I've Seen This Pet
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<!-- =========================
+        FOUND PETS
+========================= -->
+
+
+<section class="pet-section">
+
+
+<h2 class="section-title">
+
+     Found Pets
+
+</h2>
+
+
+<div class="pet-grid" id="foundContainer">
+
+
+
+<div class="pet-card">
+
+
+
+<img src="images/luna.jpg" alt="Missing Pet">
+
+<div class="pet-content">
+
+
+<span class="badge found">
+    Found
+</span>
+
+
+<h3>
+    Coco
+</h3>
+
+
+<p>
+ Persian Cat
+</p>
+
+
+<p>
+ Gampaha
+</p>
+
+
+<p>
+ Found: 03 Aug 2026
+</p>
+
+
+<p>
+Friendly cat found near the park.
+</p>
+
+
+
+<div class="card-buttons">
+
+
+<button class="view-btn">
+
+View Details
+
+</button>
+
+
+<button class="seen-btn">
+
+This Is My Pet
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="pet-card">
+
+
+<img src="images/dog3.jpg" 
+alt="Found Pet">
+
+
+<div class="pet-content">
+
+
+<span class="badge found">
+
+Found
+
+</span>
+
+
+<h3>
+
+Rocky
+
+</h3>
+
+
+<p>
+ German Shepherd
+</p>
+
+
+<p>
+ Colombo
+</p>
+
+
+<p>
+ Found: 02 Aug 2026
+</p>
+
+
+<p>
+Wearing a blue collar.
+</p>
+
+
+
+<div class="card-buttons">
+
+
+<button class="view-btn">
+
+View Details
+
+</button>
+
+
+<button class="seen-btn">
+
+This Is My Pet
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- =========================
+       FLOAT BUTTON
+========================= -->
+
+
+<a href="report-missing.html"
+class="floating-btn">
+
++
+
+</a>
+<!-- JavaScript file -->
+<script src="missing-found.js"></script>
+
+
+
+
+</body>
+
+</html>

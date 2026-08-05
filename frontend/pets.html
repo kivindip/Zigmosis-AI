@@ -137,8 +137,7 @@ grid-template-columns:1fr;
 <a href="about.html">About Us</a>
 
 <a href="register.html">Register Pet</a>
-
-<a href="pets.html" class="active">My Pets</a>
+<a href="missing-found.html" class="active">Missing & Found</a>
 
 <a href="assistant.html">AI Assistant</a>
 
@@ -256,6 +255,7 @@ Scan to view pet information
 const pet = JSON.parse(
     localStorage.getItem("lastPet")
 );
+alert(JSON.stringify(pet));
 
 
 if(pet){
@@ -330,6 +330,16 @@ else{
 
 
 </script>
+<footer>
+
+<p>
+
+© 2026 Zigmosis AI | Smart Pet Healthcare Platform
+
+</p>
+
+</footer>
+
 
 
 </body>

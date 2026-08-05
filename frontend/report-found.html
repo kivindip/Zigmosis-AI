@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Report Found Pet | Zigmosis</title>
+
+<link rel="stylesheet" href="missing-found.css">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">
+🐾 Zigmosis
+</div>
+
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+
+            <li><a href="register.html">Register Pet</a></li>
+
+            <li><a href="missing-found.html" class="active">
+                    Missing & Found
+                </a></li>
+
+            <li><a href="assistant.html">
+                    AI Assistant
+                </a></li>
+
+            <li><a href="vision.html">
+                    Vision Check
+                </a></li>
+
+</ul>
+
+
+</nav>
+
+
+
+
+
+<!-- FORM -->
+
+
+<section class="form-container">
+
+
+<div class="form-card">
+
+
+<h1>
+🐾 Report Found Pet
+</h1>
+
+
+<p>
+Help this pet find its family.
+</p>
+
+
+
+
+<form id="foundForm">
+
+
+
+<label>
+Upload Pet Photos
+</label>
+
+<input 
+type="file"
+accept="image/*"
+multiple>
+
+
+
+
+
+<label>
+Location Found
+</label>
+
+<input 
+type="text"
+id="foundLocation"
+placeholder="Example: Colombo"
+required>
+
+
+
+
+
+<label>
+Date Found
+</label>
+
+<input 
+type="date"
+id="foundDate"
+required>
+
+
+
+
+
+<label>
+Description
+</label>
+
+<textarea
+id="foundDescription"
+placeholder="Describe the pet, behaviour, condition..."
+></textarea>
+
+
+
+
+
+<label>
+Any Collar or Tag?
+</label>
+
+<select id="collar">
+
+
+<option>
+Select option
+</option>
+
+
+<option>
+Yes
+</option>
+
+
+<option>
+No
+</option>
+
+
+<option>
+Not sure
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+QR Code Scan (Optional)
+</label>
+
+<input
+type="file"
+accept="image/*">
+
+
+
+
+
+<label>
+Finder Contact Number
+</label>
+
+<input 
+type="tel"
+id="finderContact"
+placeholder="Your phone number"
+required>
+
+
+
+
+
+<div class="form-buttons">
+
+
+<a href="missing-found.html"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+
+
+<button 
+type="submit"
+class="btn-primary">
+
+Submit
+
+</button>
+
+
+</div>
+
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<script>
+
+document
+.getElementById("foundForm")
+.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+
+// Get uploaded image
+const imageInput = document.querySelector(
+'input[type="file"]'
+);
+
+
+let imageName = "";
+
+if(imageInput.files.length > 0){
+
+    imageName = imageInput.files[0].name;
+
+}
+
+
+
+// Create found pet object
+
+const foundPet = {
+
+    id: Date.now(),
+
+    type: "Found",
+
+    image: imageName,
+
+    location:
+    document.getElementById("foundLocation").value,
+
+
+    date:
+    document.getElementById("foundDate").value,
+
+
+    description:
+    document.getElementById("foundDescription").value,
+
+
+    collar:
+    document.getElementById("collar").value,
+
+
+    contact:
+    document.getElementById("finderContact").value
+
+};
+
+
+
+
+// Get existing found pets
+
+let foundPets =
+JSON.parse(
+localStorage.getItem("foundPets")
+) || [];
+
+
+
+// Add new pet
+
+foundPets.push(foundPet);
+
+
+
+// Save
+
+localStorage.setItem(
+"foundPets",
+JSON.stringify(foundPets)
+);
+
+
+
+alert(
+"Found pet report submitted successfully 🐾"
+);
+
+
+
+window.location.href =
+"missing-found.html";
+
+
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>

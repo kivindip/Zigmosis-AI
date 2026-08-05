@@ -153,7 +153,7 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="register.html" class="active">Register Pet</a>
-    <a href="pets.html">My Pets</a>
+    <a href="missing-found.html" class="active">Missing & Found</a>
     <a href="assistant.html">AI Assistant</a>
     <a href="vision.html">Vision Check</a>
   </div>
@@ -213,105 +213,56 @@
 
 <script>
 
-document.getElementById("petForm").addEventListener("submit", function(e){
+document.getElementById("petForm").addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-
     const petData = {
-
-        name: document.getElementById("petName").value,
-
-        species: document.getElementById("species").value,
-
-        breed: document.getElementById("breed").value || "Not specified",
-
-        age: document.getElementById("age").value + " years",
-
-        ownerName: document.getElementById("ownerName").value,
-
-        ownerContact: document.getElementById("ownerContact").value,
-
-        medicalNotes: document.getElementById("medicalNotes").value || "No medical notes"
-
-    };
-
-
-    document.getElementById('petForm').addEventListener('submit', async function(e){
-
-    e.preventDefault();
-
-
-    const petData = {
-
         name: document.getElementById('petName').value,
-
         species: document.getElementById('species').value,
-
-        breed: document.getElementById('breed').value,
-
+        breed: document.getElementById('breed').value || "Not specified",
         age: document.getElementById('age').value,
-
         owner_name: document.getElementById('ownerName').value,
-
         owner_contact: document.getElementById('ownerContact').value,
-
-        medical_notes: document.getElementById('medicalNotes').value,
-
+        medical_notes: document.getElementById('medicalNotes').value || "No medical notes",
         qr_token: Date.now().toString()
-
     };
-
 
     try {
 
-
-        const response = await fetch(
-            "http://127.0.0.1:8000/pets",
-            {
-
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-
-                body:JSON.stringify(petData)
-
-            }
-        );
-
+        const response = await fetch("http://127.0.0.1:8000/pets", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(petData)
+        });
 
         const data = await response.json();
-
-
         console.log(data);
 
+        // This was missing — pets.html reads this key and never got it
+        localStorage.setItem("lastPet", JSON.stringify(petData));
 
         alert("Pet registered successfully 🐾");
+        window.location.href = "pets.html";
 
-
-        window.location.href="pets.html";
-
-
-    }
-
-
-    catch(error){
-
+    } catch(error) {
         console.log(error);
-
         alert("Could not register pet");
-
     }
-
-
-});
 
 });
 
 </script>
+<footer>
+
+<p>
+
+© 2026 Zigmosis AI | Smart Pet Healthcare Platform
+
+</p>
+
+</footer>
+
 
 </body>
 </html>
