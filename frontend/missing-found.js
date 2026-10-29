@@ -1,245 +1,258 @@
-// ===============================
-// Load Missing & Found Pets
-// ===============================
 
-console.log("MY LATEST JAVASCRIPT FILE");
-// Containers
+const SUPABASE_URL = "https://lqjfyqaqmtxzoqfchblm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sC7fhI-_S-Ch4Y2alTur-w_nEdY_1Yq";
 
-const missingContainer =
-document.getElementById("missingContainer");
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
+let missingPets = [];
+let foundPets = [];
 
-const foundContainer =
-document.getElementById("foundContainer");
+const missingContainer = document.getElementById("missingContainer");
+const foundContainer = document.getElementById("foundContainer");
 
+// Safely display text from database records
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
 
-// ===============================
-// LOAD MISSING PETS
-// ===============================
+// Convert Supabase records to the format used by the website
+function convertPet(report) {
+    return {
+        id: report.id,
+        type: report.report_type,
+        name: report.pet_name || "Found Pet",
+        image: report.image_url || "",
+        breed: report.breed || "",
+        age: report.age || "",
+        gender: report.gender || "",
+        colour: report.colour || "",
+        location: report.location || "",
+        date: report.report_date || "",
+        description: report.description || "",
+        ownerName: report.owner_name || "",
+        finderName: report.finder_name || "",
+        contact: report.contact || "",
+        reward: report.reward || "",
+        collar: report.collar || "",
+        user_id: report.user_id,
+        created_at: report.created_at
+    };
+}
 
-const missingPets =
-    JSON.parse(localStorage.getItem("missingPets")) || [];
+// Load shared reports from Supabase
+async function loadPets() {
+    if (missingContainer) missingContainer.innerHTML = "<p>Loading missing pets...</p>";
+    if (foundContainer) foundContainer.innerHTML = "<p>Loading found pets...</p>";
 
-missingPets.forEach(pet => {
-    missingContainer.innerHTML += `
-        <div class="pet-card">
+    const { data, error } = await supabaseClient
+        .from("pet_reports")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-            <img
-                src="${pet.image
-                    ? (pet.image.startsWith('data:image/')
-                        ? pet.image
-                        : 'images/' + pet.image)
-                    : ''}"
-                alt="${pet.name || 'Pet'}"
-                class="pet-card-image"
-            >
+    if (error) {
+        console.error("Could not load pet reports:", error);
 
+        if (missingContainer) {
+            missingContainer.innerHTML =
+                "<p>Could not load missing pet reports. Please try again later.</p>";
+        }
+
+        if (foundContainer) {
+            foundContainer.innerHTML =
+                "<p>Could not load found pet reports. Please try again later.</p>";
+        }
+
+        return;
+    }
+
+    const reports = (data || []).map(convertPet);
+
+    missingPets = reports.filter(pet => pet.type === "Missing");
+    foundPets = reports.filter(pet => pet.type === "Found");
+
+    renderMissingPets();
+    renderFoundPets();
+    filterPets();
+}
+
+// Display missing pet cards
+function renderMissingPets() {
+    if (!missingContainer) return;
+
+    missingContainer.innerHTML = "";
+
+    missingPets.forEach(pet => {
+        const card = document.createElement("div");
+        card.className = "pet-card";
+
+        const image = pet.image
+            ? `<img src="${escapeHTML(pet.image)}"
+                    alt="${escapeHTML(pet.name)}"
+                    class="pet-card-image"
+                    onerror="this.style.display='none'">`
+            : "";
+
+        card.innerHTML = `
+            ${image}
             <div class="pet-content">
-
                 <span class="badge missing">Missing</span>
-
-                <h3>${pet.name || 'Unknown Pet'}</h3>
-
-                <p>🐾 ${pet.breed || ''}</p>
-                <p>Age: ${pet.age || ''}</p>
-                <p>${pet.location || ''}</p>
-                <p>${pet.date || ''}</p>
-                <p>Owner: ${pet.ownerName || pet.owner_name || 'Not provided'}</p>
+                <h3>${escapeHTML(pet.name || "Unknown Pet")}</h3>
+                <p>🐾 ${escapeHTML(pet.breed)}</p>
+                <p>Age: ${escapeHTML(pet.age)}</p>
+                <p>${escapeHTML(pet.location)}</p>
+                <p>${escapeHTML(pet.date)}</p>
+                <p>Owner: ${escapeHTML(pet.ownerName || "Not provided")}</p>
 
                 <div class="card-buttons">
-                    <button class="view-btn"
-                        onclick="viewPet(${pet.id}, 'missing')">
-                        View Details
-                    </button>
-
-                    <button class="seen-btn"
-                        onclick="seenPet(${pet.id}, 'missing')">
-                        I've Seen This Pet
-                    </button>
+                    <button class="view-btn" type="button">View Details</button>
+                    <button class="seen-btn" type="button">I've Seen This Pet</button>
                 </div>
-
             </div>
-        </div>
-    `;
-});
+        `;
 
+        const buttons = card.querySelectorAll("button");
 
- // ===============================
- // LOAD FOUND PETS
- // ===============================
+        buttons[0].addEventListener("click", () => {
+            viewPet(pet.id, "missing");
+        });
 
-const foundPets =
-    JSON.parse(localStorage.getItem("foundPets")) || [];
+        buttons[1].addEventListener("click", () => {
+            if (typeof seenPet === "function") {
+                seenPet(pet.id, "missing");
+            }
+        });
 
-foundPets.forEach(pet => {
+        missingContainer.appendChild(card);
+    });
+}
 
-    const imageSrc = pet.image
-        ? (pet.image.startsWith("data:image/")
-            ? pet.image
-            : pet.image.startsWith("http://") ||
-              pet.image.startsWith("https://") ||
-              pet.image.startsWith("images/") ||
-              pet.image.startsWith("/")
-                ? pet.image
-                : "images/" + pet.image)
-        : "";
+// Display found pet cards
+function renderFoundPets() {
+    if (!foundContainer) return;
 
-    foundContainer.innerHTML += `
-        <div class="pet-card">
+    foundContainer.innerHTML = "";
 
-            <img
-                src="${imageSrc}"
-                alt="${pet.name || pet.petName || 'Found Pet'}"
-                class="pet-card-image"
-                onerror="this.style.display='none'"
-            >
+    foundPets.forEach(pet => {
+        const card = document.createElement("div");
+        card.className = "pet-card";
 
+        const image = pet.image
+            ? `<img src="${escapeHTML(pet.image)}"
+                    alt="${escapeHTML(pet.name)}"
+                    class="pet-card-image"
+                    onerror="this.style.display='none'">`
+            : "";
+
+        card.innerHTML = `
+            ${image}
             <div class="pet-content">
-
                 <span class="badge found">Found</span>
-
-                <h3>${pet.name || pet.petName || "Found Pet"}</h3>
-
-                <p>${pet.location || ""}</p>
-                <p>${pet.date || ""}</p>
-                <p>Finder: ${pet.finderName || "Not provided"}</p>
-                <p>${pet.description || ""}</p>
+                <h3>${escapeHTML(pet.name || "Found Pet")}</h3>
+                <p>${escapeHTML(pet.location)}</p>
+                <p>${escapeHTML(pet.date)}</p>
+                <p>Finder: ${escapeHTML(pet.finderName || "Not provided")}</p>
+                <p>${escapeHTML(pet.description)}</p>
 
                 <div class="card-buttons">
-
-                    <button
-                        class="view-btn"
-                        onclick="viewPet(${pet.id}, 'found')">
-                        View Details
-                    </button>
-
-                    <button
-                        class="seen-btn"
-                        onclick="seenPet(${pet.id}, 'found')">
-                        This Is My Pet
-                    </button>
-
+                    <button class="view-btn" type="button">View Details</button>
+                    <button class="seen-btn" type="button">This Is My Pet</button>
                 </div>
             </div>
-        </div>
-    `;
-});
+        `;
 
+        const buttons = card.querySelectorAll("button");
 
-// ===============================
-// VIEW DETAILS
-// ===============================
+        buttons[0].addEventListener("click", () => {
+            viewPet(pet.id, "found");
+        });
 
+        buttons[1].addEventListener("click", () => {
+            if (typeof seenPet === "function") {
+                seenPet(pet.id, "found");
+            }
+        });
 
-function viewPet(id,type){
-
-
-let pets;
-
-
-if(type === "missing"){
-
-    pets = missingPets;
-
+        foundContainer.appendChild(card);
+    });
 }
 
-else{
+// Open the selected report
+function viewPet(id, type) {
+    const pets = type === "missing" ? missingPets : foundPets;
+    const selected = pets.find(pet => String(pet.id) === String(id));
 
-    pets = foundPets;
+    if (!selected) {
+        alert("This pet report could not be found.");
+        return;
+    }
 
+    localStorage.setItem("selectedPet", JSON.stringify(selected));
+    window.location.href = "pet-details.html";
 }
 
-
-
-const selected =
-pets.find(
-pet => pet.id === id
-);
-
-
-
-localStorage.setItem(
-"selectedPet",
-JSON.stringify(selected)
-);
-
-
-
-window.location.href =
-"pet-details.html";
-
-
-}
-
-
+// Search, filter and sort the displayed cards
 function filterPets() {
-    const searchText = document.getElementById("petSearch").value.trim().toLowerCase();
-    const location = document.getElementById("locationFilter").value.toLowerCase();
-    const breed = document.getElementById("breedFilter").value.toLowerCase();
-    const sortOrder = document.getElementById("sortFilter").value;
+    const searchInput = document.getElementById("petSearch");
+    const locationInput = document.getElementById("locationFilter");
+    const breedInput = document.getElementById("breedFilter");
+    const sortInput = document.getElementById("sortFilter");
+
+    const searchText = searchInput?.value.trim().toLowerCase() || "";
+    const location = locationInput?.value.toLowerCase() || "";
+    const breed = breedInput?.value.toLowerCase() || "";
+    const sortOrder = sortInput?.value || "all";
 
     let visibleCount = 0;
 
-    const missingContainer = document.getElementById("missingContainer");
-const foundContainer = document.getElementById("foundContainer");
-
-const containers = [missingContainer, foundContainer];
-
-    containers.forEach(container => {
+    [missingContainer, foundContainer].forEach(container => {
         if (!container) return;
 
         const cards = Array.from(container.querySelectorAll(".pet-card"));
 
-        // Filter pets by name, location, and breed
         cards.forEach(card => {
             const text = card.innerText.toLowerCase();
 
-            const matchesName = !searchText || text.includes(searchText);
-            const matchesLocation = !location || text.includes(location);
-            const matchesBreed = !breed || text.includes(breed);
-
-            const matches = matchesName && matchesLocation && matchesBreed;
+            const matches =
+                (!searchText || text.includes(searchText)) &&
+                (!location || text.includes(location)) &&
+                (!breed || text.includes(breed));
 
             card.style.display = matches ? "" : "none";
 
             if (matches) visibleCount++;
         });
 
-        // Sort pets by date when Latest or Oldest is selected
-          
-if (sortOrder !== "all") {
-    function getDate(card) {
-        const match = card.innerText.match(
-            /(?:Missing|Found):?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i
-        );
+        if (sortOrder !== "all") {
+            cards.sort((a, b) => {
+                const petA = findPetForCard(a, container);
+                const petB = findPetForCard(b, container);
 
-        if (!match) return null;
+                const dateA = petA?.created_at
+                    ? new Date(petA.created_at).getTime()
+                    : 0;
 
-        const timestamp = new Date(match[1]).getTime();
+                const dateB = petB?.created_at
+                    ? new Date(petB.created_at).getTime()
+                    : 0;
 
-        return Number.isNaN(timestamp) ? null : timestamp;
-    }
+                return sortOrder === "oldest"
+                    ? dateA - dateB
+                    : dateB - dateA;
+            });
 
-    cards.sort((a, b) => {
-        const dateA = getDate(a);
-        const dateB = getDate(b);
-
-        if (dateA === null && dateB === null) return 0;
-        if (dateA === null) return 1;
-        if (dateB === null) return -1;
-
-        return sortOrder === "oldest"
-            ? dateA - dateB
-            : dateB - dateA;
-    });
-}
-
-
-        // Put the cards back in the selected order
-        cards.forEach(card => container.appendChild(card));
+            cards.forEach(card => container.appendChild(card));
+        }
     });
 
-    // Show a message when no pets match
     let message = document.getElementById("noResults");
 
     if (!message) {
@@ -247,105 +260,86 @@ if (sortOrder !== "all") {
         message.id = "noResults";
         message.textContent = "No results found.";
         message.style.textAlign = "center";
-        message.style.display = "none";
 
-        document.querySelector(".search-section")
-            .insertAdjacentElement("afterend", message);
+        const searchSection = document.querySelector(".search-section");
+
+        if (searchSection) {
+            searchSection.insertAdjacentElement("afterend", message);
+        }
     }
 
     message.style.display = visibleCount === 0 ? "block" : "none";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function findPetForCard(card, container) {
+    const index = Array.from(container.querySelectorAll(".pet-card")).indexOf(card);
+    const pets = container === missingContainer ? missingPets : foundPets;
+    return pets[index];
+}
+
+// Account dropdown and page controls
+document.addEventListener("DOMContentLoaded", async function () {
     const accountIcon = document.getElementById("accountIcon");
     const accountDropdown = document.getElementById("accountDropdown");
 
-    if (!accountIcon || !accountDropdown) {
-        console.log("Account icon or dropdown was not found.");
-        return;
-    }
+    if (accountIcon && accountDropdown) {
+        accountIcon.addEventListener("click", function (event) {
+            event.stopPropagation();
+            accountDropdown.hidden = !accountDropdown.hidden;
+            accountIcon.setAttribute("aria-expanded", String(!accountDropdown.hidden));
+        });
 
-    accountIcon.addEventListener("click", function (event) {
-        event.stopPropagation();
+        document.addEventListener("click", function () {
+            accountDropdown.hidden = true;
+            accountIcon.setAttribute("aria-expanded", "false");
+        });
 
-        accountDropdown.hidden = !accountDropdown.hidden;
-
-        accountIcon.setAttribute(
-            "aria-expanded",
-            String(!accountDropdown.hidden)
-        );
-    });
-
-    document.addEventListener("click", function () {
-        accountDropdown.hidden = true;
-        accountIcon.setAttribute("aria-expanded", "false");
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const searchButton = document.getElementById("searchButton");
-    const petSearch = document.getElementById("petSearch");
-    const locationFilter = document.getElementById("locationFilter");
-    const breedFilter = document.getElementById("breedFilter");
-    const sortFilter = document.getElementById("sortFilter");
-
-    if (searchButton) {
-        searchButton.addEventListener("click", filterPets);
-    }
-
-    if (petSearch) {
-        petSearch.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                filterPets();
-            }
+        accountDropdown.addEventListener("click", function (event) {
+            event.stopPropagation();
         });
     }
 
-    [locationFilter, breedFilter, sortFilter].forEach(function (filter) {
-        if (filter) {
-            filter.addEventListener("change", filterPets);
-        }
-    });
-});
+    const searchButton = document.getElementById("searchButton");
+    const petSearch = document.getElementById("petSearch");
 
-document.addEventListener("DOMContentLoaded", async function () {
+    searchButton?.addEventListener("click", filterPets);
+
+    petSearch?.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") filterPets();
+    });
+
+    ["locationFilter", "breedFilter", "sortFilter"].forEach(id => {
+        document.getElementById(id)?.addEventListener("change", filterPets);
+    });
+
     const logoutButton = document.getElementById("logoutButton");
 
-    if (!logoutButton) return;
-
-    const { data, error } = await window.supabase
-        .createClient(
-            "https://lqjfyqaqmtxzoqfchblm.supabase.co",
-            "sb_publishable_sC7fhI-_S-Ch4Y2alTur-w_nEdY_1Yq"
-        )
-        .auth.getSession();
-
-    if (error) {
-        console.error("Session check failed:", error);
-        return;
-    }
-
-    if (!data.session) return;
-
-    logoutButton.hidden = false;
-
-    logoutButton.addEventListener("click", async function () {
-        event.preventDefault();
-        logoutButton.disabled = true;
-
-        const { error } = await window.supabase
-            .createClient(
-                "https://lqjfyqaqmtxzoqfchblm.supabase.co",
-                "sb_publishable_sC7fhI-_S-Ch4Y2alTur-w_nEdY_1Yq"
-            )
-            .auth.signOut();
+    if (logoutButton) {
+        const { data, error } = await supabaseClient.auth.getSession();
 
         if (error) {
-            console.error("Logout failed:", error);
-            alert("Logout failed. Please try again.");
-            logoutButton.disabled = false;
-            return;
-        }
+            console.error("Session check failed:", error);
+        } else if (data.session) {
+            logoutButton.hidden = false;
 
-        window.location.href = "login.html";
-    });
+            logoutButton.addEventListener("click", async function (event) {
+                event.preventDefault();
+                logoutButton.disabled = true;
+
+                const { error: logoutError } =
+                    await supabaseClient.auth.signOut();
+
+                if (logoutError) {
+                    console.error("Logout failed:", logoutError);
+                    alert("Logout failed. Please try again.");
+                    logoutButton.disabled = false;
+                    return;
+                }
+
+                window.location.href = "login.html";
+            });
+        }
+    }
 });
+
+loadPets();
