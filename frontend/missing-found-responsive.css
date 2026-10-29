@@ -1,0 +1,200 @@
+
+/* =====================================
+   MISSING & FOUND - TABLET RESPONSIVE
+===================================== */
+
+@media screen and (max-width: 1024px) {
+    nav {
+        padding: 0 5%;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 50px 5%;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-image {
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .hero-image img {
+        width: min(40%, 230px);
+        height: 280px;
+        object-fit: cover;
+    }
+
+    .search-section {
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        flex-basis: 100%;
+        min-width: 0;
+    }
+
+    .search-section select {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .pet-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-container {
+        gap: 25px;
+    }
+}
+
+/* =====================================
+   MISSING & FOUND - MOBILE
+===================================== */
+
+@media screen and (max-width: 600px) {
+    nav {
+        width: 100%;
+        padding: 0 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+        white-space: nowrap;
+    }
+
+    .hero {
+        width: 100%;
+        padding: 35px 16px;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: clamp(26px, 7vw, 34px);
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        gap: 10px;
+    }
+
+    .hero-buttons a {
+        padding: 12px 17px;
+        font-size: 14px;
+    }
+
+    .hero-image {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .hero-image img {
+        width: calc(50% - 5px);
+        max-width: 230px;
+        min-width: 0;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        border-radius: 20px;
+    }
+
+    .hero-image img:first-child {
+        margin-top: 20px;
+    }
+
+    .search-section {
+        width: 100%;
+        padding: 25px 16px;
+        gap: 12px;
+    }
+
+    .search-box {
+        width: 100%;
+        flex: none;
+        min-width: 0;
+    }
+
+    .search-section select {
+        width: 100%;
+        flex: none;
+        min-width: 0;
+        padding: 12px 14px;
+    }
+
+    .pet-section {
+        width: 100%;
+        padding: 25px 16px;
+    }
+
+    .section-title {
+        font-size: 27px;
+        margin-bottom: 20px;
+    }
+
+    .pet-grid {
+        width: 100%;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .pet-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .pet-content {
+        padding: 16px;
+    }
+
+    .card-buttons {
+        gap: 8px;
+    }
+
+    .card-buttons button {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .floating-btn {
+        right: 16px;
+        bottom: 16px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}

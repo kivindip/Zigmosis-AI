@@ -10,6 +10,7 @@ from ai.safety import protect_response
 from fastapi import UploadFile, File
 from ai.vision import create_image_embedding
 import tempfile
+from fastapi import HTTPException
 
 # Load .env file
 load_dotenv()
@@ -85,53 +86,68 @@ def add_pet(pet: Pet):
 
 
 # Get all pets
+
 @app.get("/pets")
 def get_pets():
-
     try:
-        response = supabase.table("pets").select("*").execute()
+        response = (
+            supabase.table("pets")
+            .select("id, name, species, breed, age")
+            .execute()
+        )
 
         return response.data
 
     except Exception as e:
         print("SUPABASE ERROR:", e)
-        return {"error": str(e)}
+        return {"error": "Unable to retrieve pet records"}
+
 
 # =========================
 # AI PET ASSISTANT (RAG)
 # =========================
 
+from fastapi import HTTPException
+
 @app.post("/ai/chat")
 def ai_chat(data: ChatRequest):
-
     try:
+        question = data.question.strip()
 
-        answer = generate_answer(
-    data.question
-)
+        # Validate the question
+        if not question:
+            raise HTTPException(
+                status_code=400,
+                detail="Please enter a question."
+            )
 
+        if len(question) > 1000:
+            raise HTTPException(
+                status_code=400,
+                detail="Please keep your question under 1000 characters."
+            )
 
-        safe_answer = protect_response(
-            answer
-        )
-
+        answer = generate_answer(question)
+        safe_answer = protect_response(answer)
 
         return {
-            "question": data.question,
+            "question": question,
             "answer": safe_answer
         }
 
+    except HTTPException:
+        raise
 
-    except Exception as e:
+    except Exception:
+        # Keep technical details out of the public response.
+        print("AI ERROR: Failed to process chat request.")
 
-        print(
-            "AI ERROR:",
-            e
+        raise HTTPException(
+            status_code=500,
+            detail="Sorry, PawPal couldn't process your question. Please try again."
         )
 
-        return {
-            "error": str(e)
-        }
+
 # =========================
 # VISION PET VERIFICATION
 # =========================

@@ -1,0 +1,152 @@
+
+/* ==============================
+   TABLET RESPONSIVE DESIGN
+   ============================== */
+
+@media screen and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ==============================
+   MOBILE RESPONSIVE DESIGN
+   ============================== */
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* ==============================
+   SMALL MOBILE SCREENS
+   ============================== */
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    p {
+        overflow-wrap: break-word;
+    }
+}
+
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    nav {
+        position: relative;
+    }
+
+    nav .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    nav .hamburger span {
+        width: 24px;
+        height: 3px;
+        background: var(--dark-purple);
+        border-radius: 3px;
+    }
+
+    nav .menu {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 5%;
+        background: white;
+        box-shadow: 0 5px 20px rgba(192,132,252,0.12);
+        z-index: 101;
+    }
+
+    nav .menu.open {
+        display: flex;
+    }
+
+    nav .menu a {
+        padding: 14px 0;
+        color: #64748b;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    nav .menu a:hover {
+        color: #c084fc;
+    }
+}
+@media screen and (max-width: 1024px) {
+    nav .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    nav .hamburger span {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background-color: #4c1d95;
+        border-radius: 3px;
+        flex-shrink: 0;
+    }
+}

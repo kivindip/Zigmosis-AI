@@ -9,54 +9,64 @@
 <title>Pet Details | Zigmosis</title>
 
 <link rel="stylesheet" href="missing-found.css">
+<link rel="stylesheet" href="responsive.css">
 
 </head>
 
 
 <body>
 
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 
-<nav class="navbar">
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
 
-<div class="logo">
-🐾 Zigmosis
-</div>
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
 
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="about.html">About Us</a></li>
-
-<li><a href="register.html">Register Pet</a></li>
-
-<li>
-<a href="missing-found.html" class="active">
-Missing & Found
-</a>
-</li>
-
-<li>
-<a href="assistant.html">
-AI Assistant
-</a>
-</li>
-
-<li>
-<a href="vision.html">
-Vision Check
-</a>
-</li>
-
-</ul>
-
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
 </nav>
-
-
-
-
-
 <section class="details-container">
 
 
@@ -113,7 +123,7 @@ Pet Name
 
 <button class="btn-primary">
 
-I Found This Pet
+I Found This Pet / This Is My Pet
 
 </button>
 
@@ -201,11 +211,22 @@ localStorage.getItem("selectedPet")
 
 if(selectedPet){
 
+const petImage = document.getElementById("petImage");
 
+petImage.style.display = "block";
 
-document.getElementById("petImage").src =
+if (selectedPet.image) {
+    petImage.src = selectedPet.image.startsWith("data:image/")
+        ? selectedPet.image
+        : "images/" + selectedPet.image;
 
-"images/" + selectedPet.image;
+    petImage.onerror = function () {
+        console.error("Pet image failed to load:", selectedPet.image);
+    };
+} else {
+    petImage.removeAttribute("src");
+    petImage.style.display = "none";
+}
 
 
 
@@ -257,10 +278,13 @@ selectedPet.date;
 
 
 
-document.getElementById("petOwner").innerText =
-
-"Owner/Finder: " +
-(selectedPet.owner || "Not provided");
+if (selectedPet.type === "Missing") {
+    document.getElementById("petOwner").innerText =
+        "Owner: " + (selectedPet.ownerName || "Not provided");
+} else {
+    document.getElementById("petOwner").innerText =
+        "Finder: " + (selectedPet.finderName || "Not provided");
+}
 
 
 
@@ -460,37 +484,122 @@ alert(
 
 
 
+/* SHARE LOCATION */
 
+document.querySelectorAll(".btn-outline")[0].onclick = function () {
 
-// Share buttons
+    if (!selectedPet || !selectedPet.location) {
+        alert("Pet location is not available.");
+        return;
+    }
 
-document
+    const location = selectedPet.location;
 
-.querySelectorAll(".btn-outline")
+    const mapURL =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(location);
 
-.forEach(button=>{
-
-
-button.onclick=function(){
-
-
-alert(
-
-"Sharing feature activated 🐾"
-
-);
-
-
+    window.open(mapURL, "_blank");
 };
 
 
+/* SHARE POST */
+
+document.querySelectorAll(".btn-outline")[1].onclick = async function () {
+
+    if (!selectedPet) {
+        alert("No pet selected to share.");
+        return;
+    }
+
+    const petName = selectedPet.name || "Missing or Found Pet";
+
+    const shareText =
+        "🐾 " + petName +
+        "\nStatus: " + (selectedPet.type || "Pet") +
+        "\nBreed: " + (selectedPet.breed || "Not available") +
+        "\nLocation: " + (selectedPet.location || "Not available") +
+        "\nContact: " + (selectedPet.contact || "Not provided") +
+        "\n\nHelp spread the word about this pet!";
+
+    const shareData = {
+        title: "Zigmosis - " + petName,
+        text: shareText,
+        url: window.location.href
+    };
+
+    try {
+
+        if (navigator.share) {
+
+            await navigator.share(shareData);
+
+        } else {
+
+            await navigator.clipboard.writeText(
+                shareText + "\n" + window.location.href
+            );
+
+            alert("Pet post copied! You can now paste it into WhatsApp, Facebook, or another app. 🐾");
+        }
+
+    } catch (error) {
+
+        if (error.name !== "AbortError") {
+            console.error("Sharing failed:", error);
+            alert("Couldn't share the post. Please try again.");
+        }
+
+    }
+
+};
+
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
 });
-
-
 
 </script>
 
+<footer class="site-footer">
+    <div class="footer-container">
 
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+            <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
 
 </body>
 

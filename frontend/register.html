@@ -5,60 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register Pet — Zigmosis AI</title>
 <link rel="stylesheet" href="style.css">
-<style>
-  .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 60px;
-    z-index: 10;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    backdrop-filter: none;
-    transform: none;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
-  }
-  .logo-icon { font-style: normal; font-size: 22px; }
-  .menu { display: flex; gap: 30px; }
-  .menu a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 0;
-    border-radius: 0;
-    background: none;
-    transition: 0.3s;
-  }
-  .menu a:hover, .menu a.active { color: #c5a75e; background: none; }
-  @media (max-width: 860px) {
-    .navbar { padding: 18px 24px; flex-wrap: wrap; gap: 12px; }
-    .menu { gap: 16px; flex-wrap: wrap; row-gap: 8px; }
-    .menu a { font-size: 13px; }
-  }
+<link rel="stylesheet" href="pawpal-widget.css">
+<link rel="stylesheet" href="responsive.css">
 
+<style>
+  /* Register Pet Hero Banner */
+  .register-hero {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.register-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 600px) {
+    .register-hero {
+        height: 350px;
+    }
+}
+
+
+  /* Registration Form Section */
   .register-page {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 150px 20px 60px;
+    padding: 60px 20px;
     overflow: hidden;
   }
+
   .bg-photo {
     position: fixed;
     inset: 0;
@@ -68,26 +51,27 @@
     background-color: #0C1614;
     background-image: url('images/register-bg.jpg');
   }
-  
+
   .bg-photo::before {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        180deg,
-        rgba(176, 147, 205, 0.65),
-        rgba(35, 15, 60, 0.85)
+      180deg,
+      rgba(176, 147, 205, 0.65),
+      rgba(35, 15, 60, 0.85)
     );
-}
+  }
 
   .form-card {
     width: 100%;
     max-width: 460px;
     padding: 40px 36px 36px;
     backdrop-filter: blur(18px);
-    background: rgba(18,33,29,0.55);
+    background: rgba(18, 33, 29, 0.55);
     color: #ffffff;
   }
+
   .form-card h1 {
     font-family: var(--font-display);
     font-style: italic;
@@ -97,13 +81,18 @@
     margin: 0 0 6px;
     color: #ffffff;
   }
+
   .form-card .sub {
     text-align: center;
     font-size: 13px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 30px;
   }
-  .field { margin-bottom: 18px; }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
   .field label {
     display: block;
     font-family: var(--font-mono);
@@ -113,51 +102,121 @@
     color: #ffffff;
     margin-bottom: 7px;
   }
-  .field input, .field select, .field textarea {
+
+  .field input,
+  .field select,
+  .field textarea {
     width: 100%;
     padding: 12px 14px;
     border-radius: 10px;
     border: 1px solid var(--border);
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     color: #ffffff;
     font-family: var(--font-body);
     font-size: 14px;
     outline: none;
-    transition: border-color .2s ease;
+    transition: border-color 0.2s ease;
   }
-  .field input::placeholder, .field textarea::placeholder {
-    color: rgba(255,255,255,0.45);
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
   }
-  .field input:focus, .field select:focus, .field textarea:focus {
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
     border-color: var(--gold);
   }
-  .field select option { color: #12211D; }
-  .field textarea { resize: vertical; min-height: 70px; }
-  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .field select option {
+    color: #12211D;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
   .submit-btn {
     width: 100%;
     margin-top: 10px;
     justify-content: center;
   }
-  select { appearance: none; }
+
+  select {
+    appearance: none;
+  }
 </style>
+
+
+
+
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="logo">
-    <span class="logo-icon">🐾</span>
-    Zigmosis AI
-  </div>
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="register.html" class="active">Register Pet</a>
-    <a href="missing-found.html" class="active">Missing & Found</a>
-    <a href="assistant.html">AI Assistant</a>
-    <a href="vision.html">Vision Check</a>
-  </div>
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
+
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
+
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
 </nav>
+</nav>
+<!-- Register Pet Hero Image -->
+<section class="register-hero">
+    <img src="images/hero_banner.jpg" alt="Register Pet Banner">
+</section>
+
 
 <div class="bg-photo" id="bgPhoto"></div>
 
@@ -253,16 +312,168 @@ document.getElementById("petForm").addEventListener("submit", async function(e){
 });
 
 </script>
-<footer>
 
-<p>
+<!-- Why Register Your Pet -->
+<section class="pet-story-section">
+    <div class="pet-story-heading">
+        <span class="pet-story-label">A LITTLE PAW-SITIVE ADVICE</span>
+        <h2>Why Should You Register Your Pet?</h2>
+        <p>Let our furry friend tell you why pet registration matters.</p>
+    </div>
 
-© 2026 Zigmosis AI | Smart Pet Healthcare Platform
+    <div class="pet-carousel">
+        <button class="carousel-arrow prev" id="prevCard"
+                aria-label="Previous cards">&#10094;</button>
 
-</p>
+        <div class="pet-carousel-window" id="petCarouselWindow">
+            <div class="pet-carousel-track" id="petCarouselTrack">
 
+                <article class="pet-story-card">
+                    <img src="images/dog 1.jpg" alt="Cute dog sitting">
+                    <div class="pet-story-content">
+                        <span>01 / GET STARTED</span>
+                        <h3>Hey, Hooman! 🐾</h3>
+                        <p>I'm your best friend! Help me stay identifiable wherever my adventures take me.</p>
+                    </div>
+                </article>
+
+                <article class="pet-story-card">
+                    <img src="images/CAT1.jpg" alt="Dog wearing a collar">
+                    <div class="pet-story-content">
+                        <span>02 / MY IDENTITY</span>
+                        <h3>Give Me an Identity</h3>
+                        <p>Register my details to help others identify me if I ever get lost.</p>
+                    </div>
+                </article>
+
+                <article class="pet-story-card">
+                    <img src="images/dog 2.jpg" alt="Dog with a QR tag">
+                    <div class="pet-story-content">
+                        <span>03 / SMARTER CARE</span>
+                        <h3>My QR Code </h3>
+                        <p>My QR tag can connect people to my digital pet profile and useful information.</p>
+                    </div>
+                </article>
+
+                <article class="pet-story-card">
+                    <img src="images/dog 3.jpg" alt="Happy dog with its owner">
+                    <div class="pet-story-content">
+                        <span>04 / SAFER TOGETHER</span>
+                        <h3>Help Me Get Home</h3>
+                        <p>Keep my registration details up to date so people can reach you when needed.</p>
+                    </div>
+                </article>
+                
+<!-- Card 5 -->
+<article class="pet-story-card">
+    <img src="images/dog5.jpg" alt="Happy dog with its owner">
+    <div class="pet-story-content">
+        <span>05 / EMERGENCY CARE</span>
+        <h3>Help Me in an Emergency </h3>
+        <p>My registered profile can help people find important information about me when I need help.</p>
+    </div>
+</article>
+
+<!-- Card 7 -->
+<article class="pet-story-card">
+    <img src="images/dog6.jpg" alt="Dog enjoying time with its family">
+    <div class="pet-story-content">
+        <span>07 / A LOVING HOME</span>
+        <h3>Let's Stay Together Forever </h3>
+        <p>Registering me is a simple step towards responsible pet ownership and helping me find my way home.</p>
+    </div>
+</article>
+</div>
+</div>
+
+        <button class="carousel-arrow next" id="nextCard"
+                aria-label="Next cards">&#10095;</button>
+    </div>
+
+    <div class="pet-carousel-dots" id="petCarouselDots"></div>
+
+    <a href="#petForm" class="pet-story-button">
+        Register Your Pet 
+    </a>
+</section>
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+            <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
+<script src="pawpal-widget.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById("petCarouselTrack");
+    const cards = document.querySelectorAll(".pet-story-card");
+
+    if (!track || cards.length === 0) return;
+
+    let index = 0;
+
+    function moveCards() {
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const cardWidth = cards[0].getBoundingClientRect().width + gap;
+        const visibleCards = window.innerWidth <= 560 ? 1 :
+                             window.innerWidth <= 900 ? 2 : 3;
+        const maxIndex = Math.max(0, cards.length - visibleCards);
+
+        index = index >= maxIndex ? 0 : index + 1;
+
+        track.style.transform =
+            `translateX(-${index * cardWidth}px)`;
+    }
+
+    setInterval(moveCards, 2500);
+
+    window.addEventListener("resize", function () {
+        index = 0;
+        track.style.transform = "translateX(0)";
+    });
+});
+
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+
+</script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 <title>My Pet | Zigmosis AI</title>
 
 <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="responsive.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
@@ -120,34 +120,57 @@ grid-template-columns:1fr;
 
 
 <body>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
 
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
 
-<nav class="navbar">
-
-<div class="logo">
-🐾 Zigmosis AI
-</div>
-
-
-<div class="menu">
-
-<a href="index.html">Home</a>
-
-<a href="about.html">About Us</a>
-
-<a href="register.html">Register Pet</a>
-<a href="missing-found.html" class="active">Missing & Found</a>
-
-<a href="assistant.html">AI Assistant</a>
-
-<a href="vision.html">Vision Check</a>
-
-</div>
-
-
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
 </nav>
-
 
 
 <div class="profile-page">
@@ -249,99 +272,109 @@ Scan to view pet information
 </div>
 
 
-
 <script>
-
 const pet = JSON.parse(
     localStorage.getItem("lastPet")
 );
-alert(JSON.stringify(pet));
 
-
-if(pet){
-
-
-    document.getElementById("name").innerText = pet.name;
-
-
-    document.getElementById("type").innerText =
-    pet.species + " • " + pet.breed;
-
-
-    document.getElementById("owner").innerText =
-    pet.owner_name;
-
-
-    document.getElementById("contact").innerText =
-    pet.owner_contact;
-
-
-    document.getElementById("age").innerText =
-    pet.age;
-
-
-    document.getElementById("medical").innerText =
-    pet.medical_notes;
-
-
-
-    new QRCode(document.getElementById("qrcode"),{
-
-
-        text:
-
-`Zigmosis Pet Identity
-
-Name: ${pet.name}
-
-Species: ${pet.species}
-
-Breed: ${pet.breed}
-
-Age: ${pet.age}
-
-Owner: ${pet.owner_name}
-
-Contact: ${pet.owner_contact}`,
-
-
-        width:160,
-
-        height:160
-
-
-    });
-
-
-}
-
-else{
-
+if (pet) {
 
     document.getElementById("name").innerText =
-    "No Pet Registered";
-
+        pet.name || "Not provided";
 
     document.getElementById("type").innerText =
-    "Please register a pet first";
+        (pet.species || "Not provided") +
+        " • " +
+        (pet.breed || "Not provided");
 
+    document.getElementById("owner").innerText =
+        pet.owner_name || "Not provided";
+
+    document.getElementById("contact").innerText =
+        pet.owner_contact || "Not provided";
+
+    document.getElementById("age").innerText =
+        pet.age || "Not provided";
+
+    document.getElementById("medical").innerText =
+        pet.medical_notes || "No medical notes";
+
+    document.getElementById("qrcode").innerHTML = "";
+
+    new QRCode(document.getElementById("qrcode"), {
+        text: `Zigmosis Pet Identity
+
+Name: ${pet.name || "Not provided"}
+
+Species: ${pet.species || "Not provided"}
+
+Breed: ${pet.breed || "Not provided"}
+
+Age: ${pet.age || "Not provided"}
+
+Owner: ${pet.owner_name || "Not provided"}
+
+Contact: ${pet.owner_contact || "Not provided"}`,
+
+        width: 160,
+        height: 160
+    });
+
+} else {
+
+    document.getElementById("name").innerText =
+        "No Pet Registered";
+
+    document.getElementById("type").innerText =
+        "Please register a pet first";
 
 }
 
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
 
 </script>
-<footer>
 
-<p>
+<footer class="site-footer">
+    <div class="footer-container">
 
-© 2026 Zigmosis AI | Smart Pet Healthcare Platform
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
 
-</p>
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+              <a href="blog.html">Blog & Guides</a>
+        </div>
 
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
 </footer>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
 </body>
-
 </html>

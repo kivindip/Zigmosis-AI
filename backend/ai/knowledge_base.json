@@ -47,4 +47,117 @@
   "topic":"Pet safety",
   "content":"Pet owners can improve safety by keeping identification records updated, using secure contact information, maintaining vaccinations and monitoring their pet's environment."
  }
+ 
+,
+ {
+  "topic": "Cat care",
+  "content": "Cats need balanced cat food, clean drinking water, a clean litter tray, daily attention and a safe environment. Monitor changes in appetite, drinking, urination, activity and behaviour. Contact a veterinarian about persistent or unusual changes."
+ },
+ {
+  "topic": "Puppy care",
+  "content": "Puppies need age-appropriate puppy food, fresh water, safe socialisation, gentle training and regular veterinary check-ups. Ask a veterinarian about vaccination, deworming and parasite prevention schedules suitable for the puppy's age and location."
+ },
+ {
+  "topic": "Kitten care",
+  "content": "Kittens need complete kitten food, fresh water, a warm and safe environment, a clean litter tray and regular veterinary care. Ask a veterinarian about vaccinations, deworming, nutrition and the right time for neutering."
+ },
+ {
+  "topic": "Pet grooming",
+  "content": "Regular pet grooming may include brushing the coat, checking the ears, trimming nails when needed and maintaining dental hygiene. Grooming needs depend on the animal and coat type. Avoid putting cotton buds or unapproved products deep inside the ears."
+ },
+ {
+  "topic": "Pet dental care",
+  "content": "Dental care helps maintain healthy teeth and gums. Use pet-safe toothpaste and a suitable toothbrush. Bad breath, bleeding gums, difficulty chewing or excessive drooling should be checked by a veterinarian. Never use human toothpaste for pets."
+ },
+ {
+  "topic": "Pet behaviour changes",
+  "content": "Changes such as hiding, aggression, unusual vocalisation, reduced activity or changes in toilet habits may be related to stress, environment or illness. Observe when the behaviour started and arrange a veterinary check if it persists, is severe or appears suddenly."
+ },
+ {
+  "topic": "Dog exercise",
+  "content": "Dogs need regular physical activity and mental stimulation appropriate for their age, breed, fitness and health. Provide fresh water and avoid strenuous exercise in hot weather. Stop activity if the dog appears weak, distressed or has difficulty breathing."
+ },
+ {
+  "topic": "Cat enrichment",
+  "content": "Cats benefit from interactive play, scratching posts, hiding places, climbing opportunities and clean litter facilities. Provide safe toys and supervise toys with strings or small parts that could be swallowed."
+ },
+ {
+  "topic": "Pet fleas and ticks",
+  "content": "Fleas and ticks can cause irritation and may transmit disease. Use parasite prevention products recommended by a veterinarian for the pet's species, age and weight. Never apply a dog flea product to a cat unless a veterinarian confirms it is safe, because some dog products are toxic to cats."
+ },
+ {
+  "topic": "Pet deworming",
+  "content": "Deworming needs depend on the pet's age, lifestyle, location and parasite risk. Ask a veterinarian to recommend the appropriate product and schedule. Do not guess medication doses or use products intended for another species."
+ },
+ {
+  "topic": "Pet poisoning",
+  "content": "If a pet may have swallowed a toxic substance, contact a veterinarian or emergency animal clinic immediately. Do not induce vomiting or give home remedies unless a veterinary professional instructs you to do so. Keep the product packaging available if possible."
+ },
+ {
+  "topic": "Chocolate and toxic foods",
+  "content": "Chocolate, grapes, raisins, onions, garlic, xylitol and alcohol can be dangerous to pets. Risk depends on the substance, amount and animal. If ingestion is suspected, contact a veterinarian promptly and do not wait for symptoms."
+ },
+ {
+  "topic": "Pet heat safety",
+  "content": "Pets can overheat in hot weather. Provide shade, ventilation and fresh water, and avoid leaving an animal in a parked vehicle. Heavy panting, excessive drooling, weakness, vomiting or collapse can indicate heatstroke and require urgent veterinary care."
+ },
+ {
+  "topic": "Pet wound care",
+  "content": "For a minor wound, prevent licking and contact a veterinarian for appropriate care. Severe bleeding, deep wounds, serious bites or wounds near the eyes need urgent veterinary attention. Do not apply human medicines or chemicals unless advised by a veterinarian."
+ },
+ {
+  "topic": "Pet vaccination records",
+  "content": "Keep vaccination records with the vaccine name, date given and next recommended date. Vaccination schedules vary by species, age, location and health status. A veterinarian can confirm which vaccines the pet needs and when boosters are due."
+ },
+ {
+  "topic": "Pet weight management",
+  "content": "A healthy weight depends on the pet's species, breed, age and body condition. Measure food portions, limit excessive treats and provide suitable activity. Sudden weight loss, unexplained weight gain or difficulty eating should be discussed with a veterinarian."
+ },
+ {
+  "topic": "Pet travel safety",
+  "content": "Before travelling with a pet, use a secure carrier or suitable restraint, provide ventilation and plan access to water and rest. Check identification details and any vaccination or travel requirements. Never leave a pet unattended in a hot vehicle."
+ },
+ {
+  "topic": "Updating Zigmosis pet details",
+  "content": "Pet owners should keep their Zigmosis pet identity details accurate and up to date. Review the pet's name, species, breed, owner contact details and relevant health notes when information changes. Check that the QR identity directs finders to the correct information."
+ },
+ {
+  "topic": "Scanning a Zigmosis QR tag",
+  "content": "A Zigmosis QR pet tag helps a finder access the pet's registered identity information and available owner contact details. Scan the QR code using a compatible phone camera. The information displayed depends on the platform's current configuration and the details registered for that pet."
+ },
+ {
+  "topic": "PawPal limitations",
+  "content": "PawPal provides general pet care information and is not a veterinarian. It cannot confirm a diagnosis, guarantee a cure or replace an examination. For severe symptoms, suspected poisoning, breathing difficulty, seizures or collapse, seek immediate veterinary assistance."
+ },
+ 
+{
+  "topic": "Safe foods for dogs",
+  "content": "Dogs need complete and balanced food appropriate for their age, size and health. Some foods that can be offered in small amounts include plain cooked chicken without bones or seasoning, plain cooked eggs, carrots, and plain cooked pumpkin. Introduce new foods gradually and check with a veterinarian if the dog has a medical condition or special dietary needs. Avoid chocolate, grapes, raisins, onions, garlic, xylitol and cooked bones. If a dog eats a potentially toxic substance, contact a veterinarian immediately."
+},
+{
+  "topic": "Safe foods for cats",
+  "content": "Cats need complete and balanced cat food suitable for their life stage. Small amounts of plain cooked chicken without bones or seasoning, or thoroughly cooked egg, may be suitable treats. Treats should not replace balanced cat food. Avoid chocolate, onions, garlic and other foods known to be toxic to cats. Do not give human medicines without veterinary advice. Contact a veterinarian immediately if a cat may have eaten something toxic."
+},
+{
+  "topic": "Missing pets",
+  "content": "If a pet goes missing, begin searching the nearby area safely and ask trusted neighbours whether they have seen the pet. Contact local animal shelters, veterinary clinics and animal rescue organisations. Share a recent photo and useful details such as the pet's name, species, colour, distinctive markings, last-seen location and date, and a safe contact method. Post missing-pet notices in relevant local community groups. Be cautious of people demanding money before providing evidence that they have found the pet. If the pet has a registered digital identity or QR collar tag, use its available contact or identification information to help reunite the pet with its owner."
+},
+{
+  "topic": "Found pets",
+  "content": "If you find a lost pet, approach calmly and avoid chasing or frightening it. Keep yourself and the animal safe. Check for a collar or QR identification tag if it is safe to do so. A QR code may open a pet profile containing identification details or owner contact information, depending on the service. Contact the owner using the available safe contact method. A veterinarian or animal shelter may be able to check for a microchip. Do not publish private owner information or assume that a QR code provides live GPS tracking."
+},
+{
+  "topic": "Zigmosis QR pet identity",
+  "content": "Zigmosis provides a digital pet identity concept that can use a QR collar tag to help identify a pet and connect someone who finds the pet with its owner. When a person scans the QR code, the information displayed depends on the linked Zigmosis pet profile and the features currently implemented. Keep the pet profile accurate and update owner contact details when they change. The QR code is an identification and information-sharing tool; it does not automatically provide live GPS tracking or guarantee that a missing pet will be found."
+},
+{
+  "topic": "How to use a pet QR collar tag",
+  "content": "A pet QR collar tag can help someone identify a lost pet. If you own the pet, make sure its linked digital profile is up to date and that the tag is securely attached to a suitable collar. If you find a pet, scan the QR code with a phone camera if it is safe to approach. Follow the information displayed by the linked profile to identify the pet or contact the owner. If the code does not work or the profile has no contact details, contact a local veterinary clinic, shelter or animal rescue organisation for assistance."
+},
+{
+  "topic": "Updating a pet profile",
+  "content": "Pet owners should keep their pet's digital identity profile up to date, including the pet's name, a recent photograph, species, distinctive markings and appropriate owner contact details. Only include information that is necessary and appropriate to share. Check what information is visible to anyone scanning the QR code, and avoid exposing sensitive personal details such as a home address unless there is a clear need and the owner has chosen to share it."
+}
+
 ]
+

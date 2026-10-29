@@ -9,6 +9,8 @@
 <title>About Zigmosis AI</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="pawpal-widget.css">
 
 </head>
 
@@ -19,113 +21,136 @@
 <!-- Navigation -->
 
 <nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <!-- Hamburger button for mobile and tablet -->
+    <button
+        type="button"
+        class="hamburger"
+        id="hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mainMenu"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-<div class="logo">
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
+    
 
-<span class="logo-icon">🐾</span>
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
 
-Zigmosis AI
-
-</div>
-
-
-<div class="menu">
-
-<a href="index.html">Home</a>
-
-<a href="about.html">About Us</a>
-
-<a href="register.html">Register Pet</a>
-<a href="missing-found.html" class="active">Missing & Found</a>
-
-<a href="assistant.html">AI Assistant</a>
-
-<a href="vision.html">Vision Check</a>
-
-</div>
-
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
 </nav>
 
 
 
-<!-- About Section -->
-
-
-<section class="about-section">
-
-
-<div class="about-container">
-
-
-<div class="about-image">
-
-<img src="images/about.jpg" alt="Zigmosis Pet">
-
-</div>
-
-
-
-<div class="about-content">
-
-
-<h1>
-About Zigmosis AI
-</h1>
-
-
-<p>
-
-Zigmosis AI is an intelligent digital pet identity and healthcare
-platform designed to improve the safety and wellbeing of pets using
-artificial intelligence and modern technology.
-
-</p>
-
-
-<p>
-
-The platform creates a unique digital identity for every pet,
-containing important information such as pet details, owner contact
-information, and health records.
-
-</p>
-
-
-<p>
-
-Through QR-based identification and AI-powered assistance,
-Zigmosis helps owners manage pet information, receive healthcare
-guidance, and reconnect with lost pets.
-
-</p>
-
-
-
-<h2>
-Our Mission
-</h2>
-
-
-<p>
-
-Our mission is to create a safer future for pets by connecting
-pet owners with smart digital solutions, AI technology, and
-accessible pet healthcare support.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
+<section class="about-hero">
+    <img src="images/HH1.jpg" alt="Register Pet Banner">
 </section>
 
 
+<!-- Our Story Section -->
+<section class="story-section">
+    <div class="story-container">
+
+        <div class="story-image">
+            <img src="images/about.jpg" alt="Pets enjoying a happy life">
+        </div>
+
+        <div class="story-content">
+            <span class="section-label">OUR STORY</span>
+
+            <h1>A Little Story Behind Zigmosis AI</h1>
+
+            <p>
+                Every pet deserves a safe, healthy and happy life.
+                However, keeping pet information organised and finding
+                a missing pet can sometimes be difficult.
+            </p>
+
+            <p>
+                Zigmosis AI was created to bring pet identity,
+                healthcare support and missing-pet assistance
+                together in one convenient digital platform.
+            </p>
+
+            <a href="contact.html" class="story-button">
+                Get in Touch
+            </a>
+        </div>
+
+    </div>
+</section>
 
 
+<!-- Mission and Vision Section -->
+<section class="purpose-section">
+
+    <div class="purpose-row">
+        <div class="purpose-image">
+            <img src="images/A1.jpg" alt="Caring for pets">
+        </div>
+
+        <div class="purpose-content">
+            
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to provide a simple digital platform where pet owners can manage 
+                pet identities, report missing or found pets, and connect with others. 
+                Through QR codes and community support, we aim to improve pet safety and
+                 promote responsible pet ownership.
+            </p>
+        </div>
+    </div>
+
+    <div class="purpose-row reverse">
+        <div class="purpose-image">
+            <img src="images/A3.png" alt="A happy pet with its owner">
+        </div>
+
+        <div class="purpose-content">
+            
+            <h2>Our Vision</h2>
+            <p>
+                Our vision is to create a safer community for pets and their owners by using technology to improve pet identification and help reunite missing pets with their families.
+                 We aim to build a future where every pet has a better chance of returning home safely
+            </p>
+        </div>
+    </div>
+
+</section>
 
 <section class="how-section">
 
@@ -213,11 +238,11 @@ pet health, nutrition and care.
 <h2>05</h2>
 
 <div>
-<h3>Vision Verification</h3>
+<h3>Pet Care & Safety Guides</h3>
 
 <p>
-Analyse pet images using AI vision
-technology for verification support.
+Provide helpful articles and practical tips to help pet owners care for their pets,
+ improve their safety, and find missing animals
 </p>
 </div>
 
@@ -225,25 +250,214 @@ technology for verification support.
 
 
 </div>
+
+<!-- Testimonials Section -->
+<section class="customer-feedback" id="testimonials">
+
+    <div class="feedback-heading">
+        <h2>Little Paws, Lovely Stories</h2>
+        <p>See what pet lovers think about making life safer for their furry friends.</p>
+    </div>
+
+    <div class="feedback-carousel">
+
+        <button class="feedback-arrow prev" id="prevFeedback"
+                type="button" aria-label="Previous testimonials">
+            &#10094;
+        </button>
+
+        <div class="feedback-carousel-window" id="feedbackCarouselWindow">
+            <div class="feedback-carousel-track" id="feedbackCarouselTrack">
+
+                <article class="feedback-card">
+                    <img src="images/H1.jpg" alt="Sarah" class="feedback-photo">
+                    <div class="feedback-stars">★★★★</div>
+                    <p>I always worry about my dog getting lost. Having his details in one place is a really good idea.</p>
+                    <h3>Sarah J.</h3>
+                    <span>Dog Owner</span>
+                </article>
+
+                <article class="feedback-card">
+                    <img src="images/H2.jpg" alt="Daniel" class="feedback-photo">
+                    <div class="feedback-stars">★★★★★</div>
+                    <p>The QR tag idea is my favourite. Someone could scan it and find important information about a lost pet.</p>
+                    <h3>Daniel R.</h3>
+                    <span>Pet Parent</span>
+                </article>
+
+                <article class="feedback-card">
+                    <img src="images/H3.jpg" alt="Priya" class="feedback-photo">
+                    <div class="feedback-stars">★★★★★</div>
+                    <p>I have two cats, so keeping their information organised would be really useful for me.</p>
+                    <h3>Priya M.</h3>
+                    <span>Cat Owner</span>
+                </article>
+
+                <article class="feedback-card">
+                    <img src="images/H4.jpg" alt="Amelia" class="feedback-photo">
+                    <div class="feedback-stars">★★★★</div>
+                    <p>I like that the idea is simple. You don't need to carry around lots of details about your pet.</p>
+                    <h3>Amelia K.</h3>
+                    <span>Pet Lover</span>
+                </article>
+
+                <article class="feedback-card">
+                    <img src="images/h5.jpg" alt="Michael" class="feedback-photo">
+                    <div class="feedback-stars">★★★★★</div>
+                    <p>Anything that can help bring a lost pet back home is worth looking into. I would definitely be interested.</p>
+                    <h3>Michael P.</h3>
+                    <span>Dog Owner</span>
+                </article>
+
+                <article class="feedback-card">
+                    <img src="images/H6.jpg" alt="Olivia" class="feedback-photo">
+                    <div class="feedback-stars">★★★</div>
+                    <p>Pet information, QR tags and missing-pet support in one place sounds convenient.</p>
+                    <h3>Olivia T.</h3>
+                    <span>Cat Parent</span>
+                </article>
+
+            </div>
+        </div>
+
+        <button class="feedback-arrow next" id="nextFeedback"
+                type="button" aria-label="Next testimonials">
+            &#10095;
+        </button>
+
+    </div>
+
+    <div class="feedback-carousel-dots" id="feedbackCarouselDots"></div>
 
 </section>
+<!-- End Testimonials Section -->
 
 
 
+<script>
+const feedbackForm = document.getElementById("feedbackForm");
+const feedbackStatus = document.getElementById("feedbackStatus");
 
+if (feedbackForm && feedbackStatus) {
+    feedbackForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-<footer>
+        feedbackStatus.textContent =
+            "Thank you for sharing your feedback!";
 
-<p>
+        this.reset();
+    });
+}
 
-© 2026 Zigmosis AI | Smart Pet Healthcare Platform
+/* ===== Testimonials Carousel Functionality ===== */
 
-</p>
+document.addEventListener("DOMContentLoaded", function () {
+    const feedbackTrack = document.getElementById("feedbackCarouselTrack");
+    const feedbackWindow = document.getElementById("feedbackCarouselWindow");
+    const prevFeedback = document.getElementById("prevFeedback");
+    const nextFeedback = document.getElementById("nextFeedback");
 
+    if (!feedbackTrack || !feedbackWindow || !prevFeedback || !nextFeedback) {
+        return;
+    }
+
+    let feedbackIndex = 0;
+
+    function getVisibleFeedbackCards() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+    }
+
+    function updateFeedbackCarousel() {
+        const cards = feedbackTrack.querySelectorAll(".feedback-card");
+
+        if (cards.length === 0) return;
+
+        const visibleCards = getVisibleFeedbackCards();
+        const maxIndex = Math.max(0, cards.length - visibleCards);
+
+        feedbackIndex = Math.min(feedbackIndex, maxIndex);
+
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(feedbackTrack).gap) || 0;
+
+        feedbackTrack.style.transform =
+            `translateX(-${feedbackIndex * (cardWidth + gap)}px)`;
+
+        prevFeedback.disabled = feedbackIndex === 0;
+        nextFeedback.disabled = feedbackIndex >= maxIndex;
+    }
+
+    nextFeedback.addEventListener("click", function () {
+        const maxIndex = Math.max(
+            0,
+            feedbackTrack.querySelectorAll(".feedback-card").length -
+            getVisibleFeedbackCards()
+        );
+
+        if (feedbackIndex < maxIndex) {
+            feedbackIndex++;
+            updateFeedbackCarousel();
+        }
+    });
+
+    prevFeedback.addEventListener("click", function () {
+        if (feedbackIndex > 0) {
+            feedbackIndex--;
+            updateFeedbackCarousel();
+        }
+    });
+
+    window.addEventListener("resize", updateFeedbackCarousel);
+
+    updateFeedbackCarousel();
+});
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+</script>
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+          <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+            <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
 </footer>
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="pawpal-widget.js"></script>
+<script src="script.js"></script>
 </body>
+
 
 </html>

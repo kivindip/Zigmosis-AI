@@ -1,0 +1,1026 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Guides | Zigmosis AI</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pawpal-widget.css">
+<link rel="stylesheet" href="responsive.css">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #4B3475;
+    font-family: Arial, sans-serif;
+}
+
+/* Pastel Purple Background with Text on Top */
+
+/* Blog Hero Banner */
+.hero {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(
+        120deg,
+        #271539 0%,
+        #501F5A 45%,
+        #915BA4 75%,
+        #C2649B 100%
+    );
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.hero .hero-subtitle {
+    margin: 0 0 18px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.hero h1 {
+    margin: 0 0 18px;
+    color: #FFFFFF;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(46px, 5.5vw, 68px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.hero .hero-description {
+    max-width: 550px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+@media (max-width: 580px) {
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero .hero-description {
+        font-size: 14px;
+    }
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    width: min(1150px, 92%);
+    margin: auto;
+}
+
+/* FEATURED ARTICLE */
+
+.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 45px auto 65px;
+    background: #F8F5FF;
+    border: 1px solid #E5DCF5;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.featured img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+}
+
+.featured-content {
+    padding: 35px;
+    align-self: center;
+}
+
+.badge {
+    display: inline-block;
+    color: #7046C7;
+    background: #EEE6FF;
+    border: 1px solid #DCCCF7;
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.featured h2 {
+    font-size: clamp(25px, 3vw, 35px);
+    line-height: 1.3;
+    margin: 18px 0;
+    color: #4B3475;
+}
+
+.featured p,
+.article-card p {
+    color: #75668D;
+    line-height: 1.7;
+}
+
+/* ARTICLE INFORMATION */
+
+.meta {
+    font-size: 12px;
+    color: #9387A5;
+    margin: 18px 0;
+}
+
+/* BUTTONS */
+
+.primary-btn,
+.secondary-btn {
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background .2s, color .2s;
+}
+
+.primary-btn {
+    background: #7046C7;
+    color: #FFFFFF;
+}
+
+.primary-btn:hover {
+    background: #5935A5;
+}
+
+.secondary-btn {
+    background: #FFFFFF;
+    color: #7046C7;
+    border: 1px solid #BDA7E8;
+}
+
+.secondary-btn:hover {
+    background: #F3EEFF;
+}
+
+/* SECTION HEADING */
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 29px;
+    margin-bottom: 10px;
+    color: #4B3475;
+}
+
+.section-heading p {
+    color: #75668D;
+    line-height: 1.6;
+}
+
+/* SEARCH BAR */
+
+.search-box {
+    width: 100%;
+    padding: 15px 17px;
+    border-radius: 10px;
+    border: 1px solid #E0D6F0;
+    background: #FFFFFF;
+    color: #4B3475;
+    font-size: 15px;
+    margin: 10px 0 20px;
+}
+
+.search-box::placeholder {
+    color: #9A8EAC;
+}
+
+.search-box:focus {
+    outline: 2px solid #BDA7E8;
+    border-color: #7046C7;
+}
+
+/* CATEGORY FILTERS */
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    background: #F8F5FF;
+    border: 1px solid #E5DCF5;
+    color: #60458F;
+    border-radius: 25px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #7046C7;
+    color: #FFFFFF;
+    border-color: #7046C7;
+}
+
+/* BLOG CARDS */
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 70px;
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border: 1px solid #E5DCF5;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(75, 52, 117, .06);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(75, 52, 117, .12);
+}
+
+.article-card img {
+    width: 100%;
+    height: 205px;
+    object-fit: cover;
+}
+
+.article-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 21px;
+}
+
+.article-content h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 13px 0 8px;
+    color: #4B3475;
+}
+
+.article-content p {
+    font-size: 14px;
+}
+
+.article-content .meta {
+    margin-top: auto;
+    padding: 15px 0;
+    line-height: 1.8;
+}
+
+.article-content button {
+    align-self: flex-start;
+}
+
+/* NO SEARCH RESULTS */
+
+.no-results {
+    display: none;
+    color: #75668D;
+    text-align: center;
+    padding: 30px;
+}
+
+/* ARTICLE MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    padding: 25px 15px;
+    background: rgba(44, 30, 67, .55);
+    overflow-y: auto;
+}
+
+.modal.open {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.modal-panel {
+    width: min(760px, 100%);
+    margin: auto;
+    background: #FFFFFF;
+    border: 1px solid #E5DCF5;
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 12px 35px rgba(44, 30, 67, .16);
+}
+
+.close-modal {
+    float: right;
+    border: 0;
+    background: transparent;
+    color: #7046C7;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-panel h2 {
+    line-height: 1.4;
+    padding-right: 30px;
+    color: #4B3475;
+}
+
+.modal-panel h3 {
+    color: #7046C7;
+    margin-top: 25px;
+}
+
+.modal-panel p,
+.modal-panel li {
+    color: #75668D;
+    line-height: 1.8;
+}
+
+/* CHECKLIST */
+
+.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+
+.checklist li {
+    margin: 12px 0;
+}
+
+.checklist input {
+    accent-color: #0e0d0f;
+    margin-right: 8px;
+}
+
+/* SHARE BUTTONS */
+
+.share-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .featured {
+        grid-template-columns: 1fr;
+    }
+
+    .featured img {
+        height: 280px;
+        min-height: 0;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 580px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    .menu {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-content {
+        padding: 23px;
+    }
+
+    .modal-panel {
+        padding: 22px;
+    }
+}
+
+/* Change only the main content text */
+.featured h2,
+.featured p,
+.section-heading h2,
+.section-heading p,
+.article-content h3,
+.article-content p,
+.article-content .meta,
+.no-results,
+.modal-panel h2,
+.modal-panel h3,
+.modal-panel p,
+.modal-panel li {
+    color: #25212B;
+}
+.hero {
+    background: linear-gradient(
+        120deg,
+        #806098 0%,
+        #9869A8 45%,
+        #B66E9F 75%,
+        #C982AD 100%
+    ) !important;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
+
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
+
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <p class="hero-subtitle">ZIGMOSIS AI · PET SAFETY</p>
+    <h1>Blog &amp; Guides</h1>
+    <p class="hero-description">
+        Helpful tips, practical guides, and inspiring stories
+        to keep pets safe and bring missing pets home.
+    </p>
+</section>
+
+
+<main class="container">
+
+    <!-- FEATURED ARTICLE -->
+
+    <section class="featured">
+        <img
+            src="images/B1.jpg"
+            alt="Pet recovery guide"
+        >
+
+        <div class="featured-content">
+            <span class="badge">FEATURED • CRITICAL GUIDE</span>
+
+            <h2>The Critical First 24 Hours: Step-by-Step Action Plan</h2>
+
+            <p>
+                Acting quickly can help when a pet goes missing.
+                Learn how to search nearby, alert your community,
+                prepare useful information, and organise your search.
+            </p>
+
+            <div class="meta">
+                By Zigmosis AI Team · 6 min read
+            </div>
+
+            <button class="primary-btn"
+                onclick="openArticle('first24')">
+                Read Full Article →
+            </button>
+        </div>
+    </section>
+
+    <!-- BLOG LIBRARY -->
+
+    <section id="blog-library">
+
+        <div class="section-heading">
+            <h2>Search Advice, Recovery Guides & Prevention</h2>
+            <p>
+                Find practical information for searching, protecting,
+                and caring for your pets.
+            </p>
+        </div>
+
+        <input
+            id="articleSearch"
+            class="search-box"
+            type="search"
+            placeholder="Search advice, recovery guides, articles..."
+            aria-label="Search articles"
+        >
+
+        <div class="categories" id="categories">
+            <button class="category-btn active" data-category="All">
+                All Articles
+            </button>
+            <button class="category-btn" data-category="Immediate Steps">
+                Immediate Steps
+            </button>
+            <button class="category-btn" data-category="Dog Search Tactics">
+                Dog Search Tactics
+            </button>
+            <button class="category-btn" data-category="Cat Behavior">
+                Cat Behavior
+            </button>
+            <button class="category-btn" data-category="Flyers & Tech">
+                Flyers & Tech
+            </button>
+            <button class="category-btn" data-category="Success Stories">
+                Success Stories
+            </button>
+        </div>
+
+        <div class="blog-grid" id="blogGrid"></div>
+
+        <div class="no-results" id="noResults">
+            No articles found. Try another search or category.
+        </div>
+
+    </section>
+</main>
+
+<!-- ARTICLE READER MODAL -->
+
+<div class="modal" id="articleModal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle">
+
+    <div class="modal-panel">
+        <button class="close-modal"
+            onclick="closeArticle()"
+            aria-label="Close article">&times;</button>
+
+        <span class="badge" id="modalCategory"></span>
+        <h2 id="modalTitle"></h2>
+        <div class="meta" id="modalMeta"></div>
+
+        <div id="modalBody"></div>
+
+        <div class="share-row">
+            <button class="primary-btn" onclick="shareArticle()">
+                Share Article
+            </button>
+            <button class="secondary-btn" onclick="copyArticleLink()">
+                Copy Link
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+            <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
+</footer>
+<script>
+const articles = [
+    {
+        id: "first24",
+        category: "Immediate Steps",
+        badge: "Critical Guide",
+        title: "The Critical First 24 Hours: Step-by-Step Action Plan",
+        excerpt: "A practical plan to organise your search when your pet goes missing.",
+        author: "Zigmosis AI Team",
+        date: "23 October 2026",
+        minutes: 6,
+        image: "images/B1.jpg",
+        sections: [
+            {
+                heading: "1. Start near the last known location",
+                text: "Check your home, garden, nearby streets, and places your pet knows. Ask neighbours to check garages, sheds, and other enclosed spaces."
+            },
+            {
+                heading: "2. Prepare a clear description",
+                text: "Write down your pet's name, species, breed, colour, size, distinctive markings, collar details, and the time and place they were last seen."
+            },
+            {
+                heading: "3. Alert your community",
+                text: "Contact local animal shelters and veterinary clinics. Share a clear recent photo and your contact details in relevant local community groups."
+            },
+            {
+                heading: "4. Keep a record of your search",
+                text: "Record places searched, people contacted, and sightings reported. Follow up on credible sightings and take care when approaching a frightened animal."
+            }
+        ],
+        checklist: [
+            "Search the immediate area safely",
+            "Prepare a recent photograph",
+            "Contact nearby vets and shelters",
+            "Share a clear missing-pet notice",
+            "Keep your phone available for calls"
+        ]
+    },
+    {
+        id: "dogsearch",
+        category: "Dog Search Tactics",
+        badge: "Search Guide",
+        title: "How to Search for a Missing Dog",
+        excerpt: "Organise a local search and help neighbours recognise your dog.",
+        author: "Zigmosis AI Team",
+        date: "18 October 2026",
+        minutes: 4,
+        image: "images/B2.jpg",
+        sections: [
+            {
+                heading: "Start with familiar places",
+                text: "Check routes your dog usually walks and locations where they feel comfortable. Ask people nearby if they have seen your dog."
+            },
+            {
+                heading: "Make your description specific",
+                text: "Include your dog's size, colour, coat, collar, and unique markings. Use a recent photograph whenever possible."
+            },
+            {
+                heading: "Respond carefully to sightings",
+                text: "Ask the person for the exact location and time. A frightened dog may run if chased, so seek experienced help if needed."
+            }
+        ],
+        checklist: [
+            "Check familiar walking routes",
+            "Ask neighbours about sightings",
+            "Share a recent photo",
+            "Record sighting locations and times"
+        ]
+    },
+    {
+        id: "catbehavior",
+        category: "Cat Behavior",
+        badge: "Cat Care Guide",
+        title: "Why Missing Cats May Hide Nearby",
+        excerpt: "Understand why a frightened cat may stay quiet or hide close to home.",
+        author: "Zigmosis AI Team",
+        date: "15 October 2026",
+        minutes: 5,
+        image: "images/C5.jpg",
+        sections: [
+            {
+                heading: "Look in quiet hiding places",
+                text: "Check safe accessible spaces around your property, such as under shrubs, porches, and sheltered corners. Ask neighbours to check enclosed areas."
+            },
+            {
+                heading: "Keep the environment calm",
+                text: "Avoid large noisy search groups around a suspected hiding place. Use a familiar voice and allow the cat space to approach."
+            },
+            {
+                heading: "Ask for local assistance",
+                text: "Contact nearby veterinary clinics and animal welfare groups for guidance, especially if your cat is injured or difficult to reach."
+            }
+        ],
+        checklist: [
+            "Check quiet sheltered spaces",
+            "Ask neighbours to inspect enclosed areas",
+            "Use a calm voice",
+            "Contact local animal welfare groups"
+        ]
+    },
+    {
+        id: "flyers",
+        category: "Flyers & Tech",
+        badge: "Technology Guide",
+        title: "Create an Effective Missing Pet Poster",
+        excerpt: "Learn what to include in a clear poster and how QR codes can help.",
+        author: "Zigmosis AI Team",
+        date: "12 October 2026",
+        minutes: 4,
+        image: "images/B4.jpg",
+        sections: [
+            {
+                heading: "Use a clear recent photo",
+                text: "Choose a photograph that shows your pet's appearance clearly. Add the pet's name, colour, size, distinctive markings, and last-seen area."
+            },
+            {
+                heading: "Make contact information readable",
+                text: "Include a phone number that you can answer. Avoid sharing sensitive personal information such as your home access details."
+            },
+            {
+                heading: "Use digital tools thoughtfully",
+                text: "You can share the poster in local groups and use a QR code that links to a pet profile or missing-pet report. Check that the link works before printing."
+            }
+        ],
+        checklist: [
+            "Use a recent clear photograph",
+            "Include the last-seen location",
+            "Add a reachable contact number",
+            "Check any QR code before sharing"
+        ]
+    },
+    {
+        id: "reunion",
+        category: "Success Stories",
+        badge: "Community Story",
+        title: "How Community Sharing Can Help Reunite Pets",
+        excerpt: "A guide to coordinating sightings and sharing useful information responsibly.",
+        author: "Zigmosis AI Team",
+        date: "8 October 2026",
+        minutes: 3,
+        image: "images/B5.jpg",
+        sections: [
+            {
+                heading: "Share useful, consistent details",
+                text: "A clear photograph, last-seen location, date, and safe contact method help people recognise a missing pet."
+            },
+            {
+                heading: "Verify information",
+                text: "Check the time and location of sightings before travelling. Be cautious of requests for money or sensitive information from strangers."
+            },
+            {
+                heading: "Confirm reunions safely",
+                text: "Compare identifying details and make sure the animal is handled safely. A veterinarian or animal welfare organisation may help if ownership is unclear."
+            }
+        ],
+        checklist: [
+            "Share accurate pet details",
+            "Verify reported sightings",
+            "Protect personal information",
+            "Confirm ownership before handover"
+        ]
+    }
+];
+
+let activeCategory = "All";
+let currentArticle = null;
+
+const blogGrid = document.getElementById("blogGrid");
+const searchInput = document.getElementById("articleSearch");
+
+function renderArticles() {
+    const search = searchInput.value.trim().toLowerCase();
+
+    const filtered = articles.filter(article => {
+        const matchesCategory =
+            activeCategory === "All" ||
+            article.category === activeCategory;
+
+        const searchable = [
+            article.title,
+            article.excerpt,
+            article.category,
+            article.author
+        ].join(" ").toLowerCase();
+
+        return matchesCategory && searchable.includes(search);
+    });
+
+    blogGrid.innerHTML = "";
+
+    filtered.forEach(article => {
+        const card = document.createElement("article");
+        card.className = "article-card";
+
+        const image = document.createElement("img");
+        image.src = article.image;
+        image.alt = article.title;
+        image.loading = "lazy";
+
+        const content = document.createElement("div");
+        content.className = "article-content";
+
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = article.badge;
+
+        const title = document.createElement("h3");
+        title.textContent = article.title;
+
+        const excerpt = document.createElement("p");
+        excerpt.textContent = article.excerpt;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent =
+            `By ${article.author} · ${article.date} · ${article.minutes} min read`;
+
+        const button = document.createElement("button");
+        button.className = "primary-btn";
+        button.textContent = "Read Full Article →";
+        button.addEventListener("click", () => openArticle(article.id));
+
+        content.append(badge, title, excerpt, meta, button);
+        card.append(image, content);
+        blogGrid.appendChild(card);
+    });
+
+    document.getElementById("noResults").style.display =
+        filtered.length === 0 ? "block" : "none";
+}
+
+document.querySelectorAll(".category-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        activeCategory = button.dataset.category;
+
+        document.querySelectorAll(".category-btn").forEach(item => {
+            item.classList.toggle("active", item === button);
+        });
+
+        renderArticles();
+    });
+});
+
+searchInput.addEventListener("input", renderArticles);
+
+function openArticle(id) {
+    const article = articles.find(item => item.id === id);
+    if (!article) return;
+
+    currentArticle = article;
+
+    document.getElementById("modalCategory").textContent = article.badge;
+    document.getElementById("modalTitle").textContent = article.title;
+    document.getElementById("modalMeta").textContent =
+        `By ${article.author} · ${article.date} · ${article.minutes} min read`;
+
+    const body = document.getElementById("modalBody");
+    body.innerHTML = "";
+
+    article.sections.forEach(section => {
+        const heading = document.createElement("h3");
+        heading.textContent = section.heading;
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = section.text;
+
+        body.append(heading, paragraph);
+    });
+
+    const checklistHeading = document.createElement("h3");
+    checklistHeading.textContent = "Action Checklist";
+    body.appendChild(checklistHeading);
+
+    const list = document.createElement("ul");
+    list.className = "checklist";
+
+    article.checklist.forEach(item => {
+        const li = document.createElement("li");
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+
+        checkbox.type = "checkbox";
+        label.append(checkbox, document.createTextNode(item));
+        li.appendChild(label);
+        list.appendChild(li);
+    });
+
+    body.appendChild(list);
+
+    document.getElementById("articleModal").classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeArticle() {
+    document.getElementById("articleModal").classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+function shareArticle() {
+    if (!currentArticle) return;
+
+    const url = new URL(window.location.href);
+    url.hash = "article-" + currentArticle.id;
+
+    const shareData = {
+        title: currentArticle.title,
+        text: currentArticle.excerpt,
+        url: url.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url.href)
+            .then(() => alert("Article link copied!"))
+            .catch(() => alert("Unable to copy. Use the Copy Link button."));
+    } else {
+        alert("Copy this article link:\n" + url.href);
+    }
+}
+
+function copyArticleLink() {
+    if (!currentArticle) return;
+
+    const url = new URL(window.location.href);
+    url.hash = "article-" + currentArticle.id;
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(url.href)
+            .then(() => alert("Article link copied!"))
+            .catch(() => alert("Copy this link:\n" + url.href));
+    } else {
+        alert("Copy this link:\n" + url.href);
+    }
+}
+
+document.getElementById("articleModal").addEventListener("click", event => {
+    if (event.target.id === "articleModal") closeArticle();
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeArticle();
+});
+
+renderArticles();
+
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="pawpal-widget.js"></script>
+<script src="script.js"></script>
+
+
+
+</body>
+</html>

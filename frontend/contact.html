@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Zigmosis AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="pawpal-widget.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
+
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
+
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <span>WE WOULD LOVE TO HEAR FROM YOU</span>
+        <h1>Let's Get in Touch</h1>
+        <p>
+            Have a question, suggestion or feedback?
+            Send us a message. We are happy to hear from you!
+        </p>
+    </section>
+
+    <!-- Contact Details and Feedback Form -->
+    <section class="contact-section">
+
+        <div class="contact-details">
+            <span class="section-label">CONTACT ZIGMOSIS</span>
+            <h2>We're Here for You and Your Pets</h2>
+
+            <p>
+             At Zigmosis AI, we believe every pet deserves to be safe,
+        protected, and connected to the people who love them.
+        We're here to help you learn more about our platform and
+        make pet care easier.
+            </p>
+
+            <div class="contact-item">
+                
+                <div>
+                    <h3>Email Us</h3>
+                    <p>ZigmosisAI@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                
+                <div>
+                    <h3>Contact</h3>
+                    <p>071********</p>
+                </div>
+            </div>
+
+            <a href="about.html" class="back-link">← Back to About Us</a>
+        </div>
+
+        <div class="contact-form-card">
+            <h2>Share Your Feedback</h2>
+            <p>Tell us what you think about Zigmosis AI.</p>
+
+            <form id="feedbackForm">
+
+                <label for="feedbackName">Your Name</label>
+                <input
+                    type="text"
+                    id="feedbackName"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="feedbackEmail">Email Address</label>
+                <input
+                    type="email"
+                    id="feedbackEmail"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label for="feedbackRating">Your Rating</label>
+                <select id="feedbackRating" name="rating" required>
+                    <option value="">Select a rating</option>
+                    <option value="5">★★★★★ - Excellent</option>
+                    <option value="4">★★★★ - Very Good</option>
+                    <option value="3">★★★ - Good</option>
+                    <option value="2">★★ - Fair</option>
+                    <option value="1">★ - Needs Improvement</option>
+                </select>
+
+                <label for="feedbackMessage">Your Feedback</label>
+                <textarea
+                    id="feedbackMessage"
+                    name="message"
+                    rows="5"
+                    placeholder="Write your message here..."
+                    required
+                ></textarea>
+
+                <button type="submit" class="contact-submit">
+                    Submit Feedback
+                </button>
+
+                <p id="feedbackStatus" role="status"></p>
+            </form>
+        </div>
+
+    </section>
+     <script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+</script>
+
+    <footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+            <a href="blog.html" class="active">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
+</footer>
+
+
+    <script src="contact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="pawpal-widget.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

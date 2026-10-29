@@ -9,6 +9,7 @@
 <title>Report Missing Pet | Zigmosis</title>
 
 <link rel="stylesheet" href="missing-found.css">
+<link rel="stylesheet" href="responsive.css">
 
 </head>
 
@@ -17,267 +18,207 @@
 
 
 <!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 
-<nav class="navbar">
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
 
-<div class="logo">
-🐾 Zigmosis
-</div>
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
 
-
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-
-            <li><a href="register.html">Register Pet</a></li>
-
-            <li><a href="missing-found.html" class="active">
-                    Missing & Found
-                </a></li>
-
-            <li><a href="assistant.html">
-                    AI Assistant
-                </a></li>
-
-            <li><a href="vision.html">
-                    Vision Check
-                </a></li>
-
-
-</ul>
-
-
+        <div class="account-dropdown" id="accountDropdown" hidden>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="#" id="logoutButton">Logout</a>
+        </div>
+    </div>
 </nav>
-
 
 
 
 <!-- FORM SECTION -->
 
-
 <section class="form-container">
 
+    <div class="form-card">
+
+        <h1>Report Missing Pet</h1>
 
-<div class="form-card">
+        <p>Help your pet return home safely.</p>
 
+        <form id="missingForm" autocomplete="off">
 
-<h1>
- Report Missing Pet
-</h1>
+            <label>Upload Pet Photo</label>
+
+            <input
+                type="file"
+                accept="image/*"
+            >
+
+            <label>Pet Name</label>
 
+            <input
+                type="text"
+                id="petName"
+                placeholder="Enter pet name"
+                required
+                autocomplete="off"
+            >
 
-<p>
-Help your pet return home safely.
-</p>
-
-
-
-
-<form id="missingForm">
-
-
-
-<label>
-Upload Pet Photo
-</label>
-
-<input 
-type="file"
-accept="image/*">
-
-
-
-
-
-<label>
-Pet Name
-</label>
-
-<input 
-type="text"
-id="petName"
-placeholder="Enter pet name"
-required>
-
-
-
-
-
-<label>
-Breed
-</label>
-
-<input 
-type="text"
-id="breed"
-placeholder="Enter breed"
-required>
-
-
-
-
-
-<label>
-Age
-</label>
-
-<input 
-type="number"
-id="age"
-placeholder="Pet age">
-
-
-
-
-
-<label>
-Gender
-</label>
-
-<select id="gender">
-
-<option>
-Select Gender
-</option>
-
-<option>
-Male
-</option>
-
-<option>
-Female
-</option>
-
-</select>
-
-
-
-
-
-<label>
-Colour
-</label>
-
-<input 
-type="text"
-id="colour"
-placeholder="Pet colour">
-
-
-
-
-
-
-<label>
-Last Seen Location
-</label>
-
-<input 
-type="text"
-id="location"
-placeholder="Example: Colombo">
-
-
-
-
-<label>
-Date Missing
-</label>
-
-<input 
-type="date"
-id="missingDate">
-
-
-
-
-
-<label>
-Description
-</label>
-
-<textarea
-id="description"
-placeholder="Describe your pet..."
-></textarea>
-
-
-
-
-
-
-<label>
-Reward (Optional)
-</label>
-
-<input 
-type="text"
-id="reward"
-placeholder="Example: Rs.5000">
-
-
-
-
-
-<label>
-Contact Number
-</label>
-
-<input 
-type="tel"
-id="contact"
-placeholder="Your phone number"
-required>
-
-
-
-
-
-<label>
-Upload QR Code (Optional)
-</label>
-
-<input 
-type="file"
-accept="image/*">
-
-
-
-
-
-<div class="form-buttons">
-
-
-<a href="missing-found.html"
-class="cancel-btn">
-
-Cancel
-
-</a>
-
-
-
-<button 
-type="submit"
-class="btn-primary">
-
-Submit
-
-</button>
-
-
-</div>
-
-
-
-</form>
-
-
-</div>
-
+            <label>Breed</label>
+
+            <input
+                type="text"
+                id="breed"
+                placeholder="Enter breed"
+                required
+                autocomplete="off"
+            >
+
+            <label>Age</label>
+
+            <input
+                type="number"
+                id="age"
+                placeholder="Pet age"
+                autocomplete="off"
+            >
+
+            <label>Gender</label>
+
+            <select id="gender">
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <label>Colour</label>
+
+            <input
+                type="text"
+                id="colour"
+                placeholder="Pet colour"
+                autocomplete="off"
+            >
+
+            <label>Last Seen Location</label>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Example: Colombo"
+                autocomplete="off"
+            >
+
+            <label>Date Missing</label>
+
+            <input
+                type="date"
+                id="missingDate"
+            >
+
+            <label>Description</label>
+
+            <textarea
+                id="description"
+                placeholder="Describe your pet..."
+                autocomplete="off"
+            ></textarea>
+
+            <label>Owner Name</label>
+
+            <input
+                type="text"
+                id="ownerName"
+                placeholder="Enter owner's name"
+                autocomplete="off"
+            >
+
+            <label>Reward (Optional)</label>
+
+            <input
+                type="text"
+                id="reward"
+                placeholder="Example: Rs.5000"
+                autocomplete="off"
+            >
+
+            <label>Contact Number</label>
+
+            <input
+                type="tel"
+                id="contact"
+                placeholder="Your phone number"
+                required
+                autocomplete="off"
+            >
+
+            <label>Upload QR Code (Optional)</label>
+
+            <input
+                type="file"
+                accept="image/*"
+            >
+
+            <div class="form-buttons">
+
+                <a
+                    href="missing-found.html"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </section>
+
 
 
 <script>
@@ -285,31 +226,29 @@ Submit
 document
 .getElementById("missingForm")
 .addEventListener(
-"submit",
-function(e){
+"submit", async function(e) {
 
 e.preventDefault();
 
 
 // Get uploaded image
 
-const imageInput =
-document.querySelector(
-'input[type="file"]'
+const imageInput = document.querySelector(
+    '#missingForm input[type="file"]'
 );
-
 
 let imageName = "";
 
+if (imageInput.files.length > 0) {
+    imageName = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
-if(imageInput.files.length > 0){
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
 
-    imageName =
-    imageInput.files[0].name;
-
+        reader.readAsDataURL(imageInput.files[0]);
+    });
 }
-
-
 
 // Create missing pet object
 
@@ -356,6 +295,8 @@ document.getElementById("missingDate").value,
 description:
 document.getElementById("description").value,
 
+ownerName:
+    document.getElementById("ownerName").value,
 
 reward:
 document.getElementById("reward").value,
@@ -425,12 +366,56 @@ window.location.href =
 
 });
 
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+
+
 </script>
 
 
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+              <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
+</footer>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
 
 
 

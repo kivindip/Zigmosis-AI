@@ -9,9 +9,12 @@
     <title>Missing & Found Pets | Zigmosis</title>
 
     <link rel="stylesheet" href="missing-found.css">
+    <link rel="stylesheet" href="missing-found-responsive.css">
+    <link rel="stylesheet" href="responsive.css">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="pawpal-widget.css">
 
 </head>
 
@@ -19,36 +22,58 @@
 
     <!-- ================= NAVBAR ================= -->
 
-    <nav class="navbar">
+<nav>
+    <div class="logo">
+        <span class="logo-icon">🐾</span>
+        Zigmosis AI
+    </div>
+    <button
+    type="button"
+    class="hamburger"
+    id="hamburger"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 
-        <div class="logo">
-            🐾 Zigmosis
-        </div>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="register.html">Register Pet</a>
+        <a href="missing-found.html">Missing & Found</a>
+        <a href="blog.html">Blog & Guides</a>
+    </div>
 
-        <ul class="nav-links">
+    <div class="account-menu">
+        <button
+            type="button"
+            class="account-icon"
+            id="accountIcon"
+            aria-label="Account menu"
+            aria-expanded="false"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="23" height="23" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+            </svg>
+        </button>
 
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
+       
+<div class="account-dropdown" id="accountDropdown" hidden>
+    <a href="login.html" id="loginLink">Login</a>
+    <a href="signup.html" id="signupLink">Sign Up</a>
+   <a href="#" id="logoutButton">Logout</a>
+</div>
 
-            <li><a href="register.html">Register Pet</a></li>
-
-            <li><a href="missing-found.html" class="active">
-                    Missing & Found
-                </a></li>
-
-            <li><a href="assistant.html">
-                    AI Assistant
-                </a></li>
-
-            <li><a href="vision.html">
-                    Vision Check
-                </a></li>
-
-        </ul>
-
-        
-
-    </nav>
+    </div>
+</nav>
 
 
 
@@ -60,7 +85,7 @@
 
             <span class="hero-badge">
 
-                🐾 Reunite Families
+                Reunite Families
 
             </span>
 
@@ -112,109 +137,52 @@
     </section>
 
 
+<section class="search-section">
 
-    <!-- ================= SEARCH ================= -->
-
-    <section class="search-section">
-
-        <div class="search-box">
-
+    <div class="search-box">
+        <input
+            type="text"
+            id="petSearch"
+            placeholder="Search pet name..."
+        >
+        <button type="button" id="searchButton" aria-label="Search pets">
             <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
 
-            <input
-                type="text"
-                placeholder="Search pet name...">
+    <select id="locationFilter">
+        <option value="">All Locations</option>
+        <option value="Colombo">Colombo</option>
+        <option value="Gampaha">Gampaha</option>
+        <option value="Kandy">Kandy</option>
+    </select>
 
-        </div>
+    <select id="breedFilter">
+        <option value="">All Breeds</option>
+        <option value="Poodle">Poodle</option>
+        <option value="Labrador">Labrador</option>
+        <option value="German Shepherd">German Shepherd</option>
+        <option value="Persian Cat">Persian Cat</option>
+    </select>
 
+    <select id="sortFilter">
+        <option value="all">All</option>
+        <option value="latest">Latest</option>
+        <option value="oldest">Oldest</option>
+    </select>
 
-
-        <select>
-
-            <option>
-
-                Location
-
-            </option>
-
-            <option>
-
-                Colombo
-
-            </option>
-
-            <option>
-
-                Gampaha
-
-            </option>
-
-            <option>
-
-                Kandy
-
-            </option>
-
-        </select>
+</section>
 
 
-
-        <select>
-
-            <option>
-
-                Breed
-
-            </option>
-
-            <option>
-
-                Labrador
-
-            </option>
-
-            <option>
-
-                German Shepherd
-
-            </option>
-
-            <option>
-
-                Persian Cat
-
-            </option>
-
-        </select>
-
-
-
-        <select>
-
-            <option>
-
-                Latest
-
-            </option>
-
-            <option>
-
-                Oldest
-
-            </option>
-
-        </select>
-
-    </section>
-
+    
     <!-- =========================
         MISSING PETS
 ========================= -->
 
-<section class="pet-section">
+<section class="pet-section"> 
 
     <h2 class="section-title">
-        🐾 Missing Pets
+         Missing Pets
     </h2>
 
 
@@ -395,9 +363,7 @@ View Details
 </span>
 
 
-<h3>
-    Coco
-</h3>
+
 
 
 <p>
@@ -449,10 +415,6 @@ This Is My Pet
 </div>
 
 
-
-
-
-
 <div class="pet-card">
 
 
@@ -469,12 +431,6 @@ Found
 
 </span>
 
-
-<h3>
-
-Rocky
-
-</h3>
 
 
 <p>
@@ -530,6 +486,47 @@ This Is My Pet
 
 </section>
 
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.querySelector("nav .menu");
+
+hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+});
+</script>
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>Zigmosis<span>.</span></h2>
+            <p class="footer-tagline">Every paw has a story.</p>
+            <p class="footer-description">
+                A little digital home for pets, helping them stay
+                connected to the people who love them.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Explore</h3>
+            <a href="about.html">About Us</a>
+            <a href="register.html">Register a Pet</a>
+            <a href="missing-found.html">Missing &amp; Found</a>
+              <a href="blog.html">Blog & Guides</a>
+        </div>
+
+        <div class="footer-purpose">
+            <h3>Our Purpose</h3>
+            <p>Pet Safety</p>
+            <p>Digital Pet Identity</p>
+            <p>A Caring Pet Community</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Zigmosis. Made with care for every paw.</p>
+    </div>
+</footer>
 
 
 
@@ -545,8 +542,12 @@ class="floating-btn">
 
 </a>
 <!-- JavaScript file -->
-<script src="missing-found.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="missing-found.js"></script>
+<script src="pawpal-widget.js"></script>
 
 
 
