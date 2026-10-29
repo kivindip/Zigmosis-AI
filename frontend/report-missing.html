@@ -223,33 +223,154 @@
 
 <script>
 
-document.getElementById("missingForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
+document
+.getElementById("missingForm")
+.addEventListener(
+"submit", async function(e) {
 
+e.preventDefault();
+
+
+// Get uploaded image
+
+const imageInput = document.querySelector(
+    '#missingForm input[type="file"]'
+);
+
+let imageName = "";
+
+if (imageInput.files.length > 0) {
+    imageName = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+
+        reader.readAsDataURL(imageInput.files[0]);
+    });
+}
+
+// Create missing pet object
+
+const missingPet = {
+
+
+id: Date.now(),
+
+
+type: "Missing",
+
+
+image: imageName,
+
+
+name:
+document.getElementById("petName").value,
+
+
+breed:
+document.getElementById("breed").value,
+
+
+age:
+document.getElementById("age").value,
+
+
+gender:
+document.getElementById("gender").value,
+
+
+colour:
+document.getElementById("colour").value,
+
+
+location:
+document.getElementById("location").value,
+
+
+date:
+document.getElementById("missingDate").value,
+
+
+description:
+document.getElementById("description").value,
+
+ownerName:
+    document.getElementById("ownerName").value,
+
+reward:
+document.getElementById("reward").value,
+
+
+contact:
+document.getElementById("contact").value
+
+
+};
+
+
+
+
+
+// Get existing missing pets
+
+let missingPets =
+
+JSON.parse(
+localStorage.getItem("missingPets")
+)
+
+|| [];
+
+
+
+
+
+// Add new pet
+
+missingPets.push(missingPet);
+
+
+
+
+
+// Save
+
+localStorage.setItem(
+
+"missingPets",
+
+JSON.stringify(missingPets)
+
+);
+
+/* EXTRA CODE: ALSO SAVE THE MISSING REPORT TO SUPABASE */
+
+try {
     const supabaseClient = window.supabase.createClient(
         "https://lqjfyqaqmtxzoqfchblm.supabase.co",
         "sb_publishable_sC7fhI-_S-Ch4Y2alTur-w_nEdY_1Yq"
     );
 
-    try {
-        const { data: { user }, error: userError } =
-            await supabaseClient.auth.getUser();
+    const { data: { user }, error: userError } =
+        await supabaseClient.auth.getUser();
 
-        if (userError || !user) {
-            alert("Please log in before submitting a missing pet report.");
-            return;
-        }
+    if (userError) throw userError;
 
-        const photoInput = document.querySelector(
-            '#missingForm input[type="file"]'
-        );
+    if (!user) {
+        alert("Please log in before submitting a missing pet report.");
+        return;
+    }
+
+    let imageUrl = null;
+
+    // Upload the pet photo to Supabase Storage
+    const photoInput = document.querySelector(
+        '#missingForm input[type="file"]'
+    );
+
+    if (photoInput && photoInput.files.length > 0) {
         const photo = photoInput.files[0];
-
-        if (!photo) {
-            alert("Please select a pet photo.");
-            return;
-        }
-
         const extension = photo.name.split(".").pop();
         const filePath = `${user.id}/${Date.now()}.${extension}`;
 
@@ -263,36 +384,60 @@ document.getElementById("missingForm").addEventListener("submit", async function
             .from("pet-report-images")
             .getPublicUrl(filePath);
 
-        const form = event.currentTarget;
-
-        const { error: insertError } = await supabaseClient
-            .from("pet_reports")
-            .insert({
-                report_type: "Missing",
-                pet_name: form.querySelector('[name="name"]')?.value || null,
-                breed: form.querySelector('[name="breed"]')?.value || null,
-                age: form.querySelector('[name="age"]')?.value || null,
-                gender: form.querySelector('[name="gender"]')?.value || null,
-                colour: form.querySelector('[name="colour"]')?.value || null,
-                location: form.querySelector('[name="location"]')?.value,
-                report_date: form.querySelector('[name="date"]')?.value || null,
-                description: form.querySelector('[name="description"]')?.value || null,
-                owner_name: form.querySelector('[name="ownerName"]')?.value || null,
-                contact: form.querySelector('[name="contact"]')?.value || null,
-                reward: form.querySelector('[name="reward"]')?.value || null,
-                image_url: imageData.publicUrl,
-                user_id: user.id
-            });
-
-        if (insertError) throw insertError;
-
-        alert("Missing pet report submitted successfully!");
-        window.location.href = "missing-found.html";
-
-    } catch (error) {
-        console.error("Missing report error:", error);
-        alert("Could not submit the report: " + error.message);
+        imageUrl = imageData.publicUrl;
     }
+
+    // Save the missing report to Supabase
+    const { error: insertError } = await supabaseClient
+        .from("pet_reports")
+        .insert({
+            report_type: "Missing",
+            pet_name: missingPet.name || null,
+            breed: missingPet.breed || null,
+            age: missingPet.age || null,
+            gender: missingPet.gender || null,
+            colour: missingPet.colour || null,
+            location: missingPet.location,
+            report_date: missingPet.date || null,
+            description: missingPet.description || null,
+            owner_name: missingPet.ownerName || null,
+            contact: missingPet.contact || null,
+            reward: missingPet.reward || null,
+            image_url: imageUrl,
+            user_id: user.id
+        });
+
+    if (insertError) throw insertError;
+
+    console.log("Missing pet saved to Supabase successfully.");
+
+} catch (error) {
+    console.error("Supabase missing report failed:", error);
+    alert("The report was saved locally, but Supabase failed: " + error.message);
+    return;
+}
+
+
+
+
+
+
+alert(
+
+"Missing pet report submitted successfully 🐾"
+
+);
+
+
+
+
+
+window.location.href =
+
+"missing-found.html";
+
+
+
 });
 
 const hamburger = document.getElementById("hamburger");

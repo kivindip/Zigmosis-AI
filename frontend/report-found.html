@@ -201,76 +201,187 @@
 
 <script>
 
-document.getElementById("foundForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+document
+.getElementById("foundForm")
+.addEventListener(
+"submit", async function(e) {
+e.preventDefault();
 
+
+// Get uploaded image
+
+const imageInput = document.querySelector(
+    '#foundForm input[type="file"]'
+);
+
+let imageName = "";
+
+if (imageInput.files.length > 0) {
+    imageName = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+
+        reader.readAsDataURL(imageInput.files[0]);
+    });
+}
+
+
+// Create found pet object
+
+
+const foundPet = {
+
+    id: Date.now(),
+
+    type: "Found",
+
+    name: "Found Pet",
+
+    image: imageName,
+
+    breed:
+    document.getElementById("foundBreed").value,
+
+    age:
+    document.getElementById("foundAge").value,
+
+    gender:
+    document.getElementById("foundGender").value,
+
+    colour:
+    document.getElementById("foundColour").value,
+
+    location:
+    document.getElementById("foundLocation").value,
+
+    date:
+    document.getElementById("foundDate").value,
+
+    description:
+    document.getElementById("foundDescription").value,
+
+    collar:
+    document.getElementById("collar").value,
+
+    qr:
+    document.getElementById("foundQR").files.length > 0
+        ? document.getElementById("foundQR").files[0].name
+        : "",
+
+    finderName:
+    document.getElementById("finderName").value,
+
+    contact:
+    document.getElementById("finderContact").value
+
+};
+
+
+// Get existing found pets
+
+let foundPets =
+JSON.parse(
+localStorage.getItem("foundPets")
+) || [];
+
+
+
+// Add new pet
+
+foundPets.push(foundPet);
+
+
+
+// Save
+
+localStorage.setItem(
+"foundPets",
+JSON.stringify(foundPets)
+);
+
+
+/* EXTRA CODE: ALSO SAVE THE REPORT TO SUPABASE */
+
+try {
     const supabaseClient = window.supabase.createClient(
         "https://lqjfyqaqmtxzoqfchblm.supabase.co",
         "sb_publishable_sC7fhI-_S-Ch4Y2alTur-w_nEdY_1Yq"
     );
 
-    try {
-        // Check the logged-in user
-        const { data: { user }, error: userError } =
-            await supabaseClient.auth.getUser();
+    const { data: { user }, error: userError } =
+        await supabaseClient.auth.getUser();
 
-        if (userError || !user) {
-            alert("Please log in before submitting a found pet report.");
-            return;
-        }
+    if (userError) throw userError;
 
-        // Get the pet photo
-        const photoInput = document.getElementById("foundPhotos");
-        const photo = photoInput.files[0];
-        let imageUrl = null;
-
-        // Upload the photo if one was selected
-        if (photo) {
-            const extension = photo.name.split(".").pop();
-            const filePath = `${user.id}/${Date.now()}.${extension}`;
-
-            const { error: uploadError } = await supabaseClient.storage
-                .from("pet-report-images")
-                .upload(filePath, photo);
-
-            if (uploadError) throw uploadError;
-
-            const { data: imageData } = supabaseClient.storage
-                .from("pet-report-images")
-                .getPublicUrl(filePath);
-
-            imageUrl = imageData.publicUrl;
-        }
-
-        // Save the found-pet report
-        const { error: insertError } = await supabaseClient
-            .from("pet_reports")
-            .insert({
-                report_type: "Found",
-                pet_name: "Found Pet",
-                breed: document.getElementById("foundBreed").value || null,
-                age: document.getElementById("foundAge").value || null,
-                gender: document.getElementById("foundGender").value || null,
-                colour: document.getElementById("foundColour").value || null,
-                location: document.getElementById("foundLocation").value,
-                report_date: document.getElementById("foundDate").value || null,
-                description: document.getElementById("foundDescription").value || null,
-                collar: document.getElementById("collar").value || null,
-                finder_name: document.getElementById("finderName").value,
-                contact: document.getElementById("finderContact").value,
-                image_url: imageUrl,
-                user_id: user.id
-            });
-
-        if (insertError) throw insertError;
-
-        alert("Found pet report submitted successfully 🐾");
-        window.location.href = "missing-found.html";
-
-    } catch (error) {
-        console.error("Found pet report error:", error);
-        alert("Could not submit the report: " + error.message);
+    if (!user) {
+        alert("Please log in before submitting a found pet report.");
+        return;
     }
+
+    let imageUrl = null;
+
+    // Upload the selected pet photo to Supabase Storage
+    if (imageInput.files.length > 0) {
+        const photo = imageInput.files[0];
+        const extension = photo.name.split(".").pop();
+        const filePath = `${user.id}/${Date.now()}.${extension}`;
+
+        const { error: uploadError } = await supabaseClient.storage
+            .from("pet-report-images")
+            .upload(filePath, photo);
+
+        if (uploadError) throw uploadError;
+
+        const { data: imageData } = supabaseClient.storage
+            .from("pet-report-images")
+            .getPublicUrl(filePath);
+
+        imageUrl = imageData.publicUrl;
+    }
+
+    // Save the report to the database
+    const { error: insertError } = await supabaseClient
+        .from("pet_reports")
+        .insert({
+            report_type: "Found",
+            pet_name: "Found Pet",
+            breed: foundPet.breed || null,
+            age: foundPet.age || null,
+            gender: foundPet.gender || null,
+            colour: foundPet.colour || null,
+            location: foundPet.location,
+            report_date: foundPet.date || null,
+            description: foundPet.description || null,
+            finder_name: foundPet.finderName || null,
+            contact: foundPet.contact || null,
+            image_url: imageUrl,
+            user_id: user.id
+        });
+
+    if (insertError) throw insertError;
+
+    console.log("Found pet saved to Supabase successfully.");
+
+} catch (error) {
+    console.error("Supabase save failed:", error);
+    alert("The report was saved locally, but Supabase failed: " + error.message);
+}
+
+
+
+
+alert(
+"Found pet report submitted successfully 🐾"
+);
+
+
+
+window.location.href =
+"missing-found.html";
+
+
 });
 
 const hamburger = document.getElementById("hamburger");
