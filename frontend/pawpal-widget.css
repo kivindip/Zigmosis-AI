@@ -2,7 +2,7 @@
 /* Floating PawPal button */
 .pawpal-launcher {
     position: fixed;
-    right: 24px;
+    left: 24px;
     bottom: 24px;
     z-index: 9999;
     border: none;
@@ -24,7 +24,7 @@
 /* PawPal popup container */
 .pawpal-panel {
     position: fixed;
-    right: 24px;
+    left: 24px;
     bottom: 24px;
     z-index: 9998;
 
@@ -82,7 +82,7 @@
 /* Mobile layout */
 @media (max-width: 480px) {
     .pawpal-panel {
-        right: 12px;
+        left: 24px;
         bottom: 78px;
         width: calc(100vw - 24px);
         height: min(700px, calc(100vh - 100px));
@@ -122,4 +122,21 @@
     color: #ffffff;
     font-size: 13px;
     cursor: pointer;
+}
+
+.pawpal-launcher {
+    left: 24px !important;
+    right: auto !important;
+}
+
+.pawpal-panel {
+    left: 24px !important;
+    right: auto !important;
+}
+
+@media (max-width: 480px) {
+    .pawpal-panel {
+        left: 12px !important;
+        right: auto !important;
+    }
 }
